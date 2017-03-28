@@ -1,0 +1,25 @@
+{
+  "name": "markdown-html-ppt",
+  "version": "1.0.0",
+  "description": "convert markdown to html format ppt that can be offline use with any web browser which supported html5",
+  "keywords": [
+    "markdown",
+    "ppt",
+    "html5",
+    "Grav",
+    "jhipster",
+    "Pandox",
+    "reveal-md",
+    "reveal.js"
+  ],
+  "homepage": "https://github.com/skygreen2001/markdown-html-ppt",
+  "license": "Apache-2.0",
+  "moduleType": "globals",
+  "ignore": [
+    "/.*"
+  ],
+  "dependencies": {
+    "reveal.js": "^3.4.1"
+  },
+  "_dependencies_ignored": {}
+}
