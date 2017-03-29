@@ -15,8 +15,10 @@
 ## 参考资料
 
     * hakimel/reveal.js: https://github.com/hakimel/reveal.js
-    * chjj/marked      : https://github.com/chjj/marked [A markdown parser and compiler]
+    * A Markdown parser: https://github.com/evilstreak/markdown-js
+    * ShowdownJS       : https://github.com/showdownjs/showdown
     * Parsedown        : https://github.com/erusev/parsedown
+    * Markdown Editor  : https://github.com/lepture/editor
     * webpro/reveal-md : https://github.com/webpro/reveal-md
     * Dillinger        : http://dillinger.io/
     * Pandox           : http://pandoc.org/installing.html

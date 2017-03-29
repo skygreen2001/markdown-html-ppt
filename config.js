@@ -7,7 +7,7 @@ module.exports = function(config) {
    * @property config.dest
    * @type {String}
    */
-  config.dest = 'demo';
+  config.dest = '';
 
   //
   // 3rd party components

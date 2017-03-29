@@ -8,7 +8,7 @@
 // Please use config.js to override these selectively:
 
 var config = {
-  dest    : 'demo',
+  dest    : '',
   vendor: {
     css: [ ],
     js : [ ]
@@ -33,19 +33,10 @@ var gulp           = require('gulp'),
     bower          = require('gulp-bower'),
 
     seq            = require('run-sequence'),
-    connect        = require('gulp-connect'),
-    less           = require('gulp-less'),
     uglify         = require('gulp-uglify'),
     sourcemaps     = require('gulp-sourcemaps'),
     cssmin         = require('gulp-cssmin'),
-    image          = require('gulp-image'),
-    order          = require('gulp-order'),
-    concat         = require('gulp-concat'),
     ignore         = require('gulp-ignore'),
-    clean          = require('gulp-clean'),
-    mobilizer      = require('gulp-mobilizer'),
-    replace        = require('gulp-replace'),
-    streamqueue    = require('streamqueue'),
     rename         = require('gulp-rename'),
     path           = require('path');
 
@@ -95,6 +86,7 @@ gulp.task('install', function() {
   bower({});
 });
 
+
 /*====================================
 =            Default Task            =
 ====================================*/
@@ -107,4 +99,27 @@ gulp.task('default', function(done){
   tasks.push('build');
 
   seq(tasks, done);
+});
+
+
+/*======================================
+=       Markdown to reveal.js ppt      =
+======================================*/
+
+gulp.task('markdown', function() {
+    gulp.src('./bower_components/markdown/lib/markdown.js')
+    .pipe(gulp.dest(path.join(config.dest, 'js')));
+
+    const fs = require('fs');
+    var content = fs.readFileSync(__dirname + '/demo/md/CODEGUIDE.md', 'utf8');
+
+    var md = require( "markdown" ).markdown;
+    // parse the markdown into a tree and grab the link references
+    // var tree = md.parse( content );
+    // var html = md.renderJsonML( md.toHTMLTree( tree ) );
+    // fs.writeFile(__dirname + '/message.md', html, (err) => {
+    //   if (err) throw err;
+    //   console.log('The file has been saved!');
+    // });
+
 });
