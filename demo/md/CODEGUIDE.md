@@ -274,7 +274,7 @@ li[data-type="single"] {
 
 最外层统一使用单引号。
 
-```javascript
+```js
 var y = 'foo',
 z = '<div id="test"></div>';
 ```
@@ -294,7 +294,7 @@ z = '<div id="test"></div>';
 一个函数作用域中所有的变量声明尽量提到函数首部，
 用一个var声明，不允许出现两个连续的var声明。
 
-```javascript
+```js
 function doSomethingWithItems(items) {
     // use one var
     var value = 10,
@@ -311,7 +311,7 @@ function doSomethingWithItems(items) {
 - 无论是函数声明还是函数表达式，'('前不要空格，但'{'前一定要有空格；
 - 参数之间用', '分隔，注意逗号后有一个空格。
 
-```javascript
+```js
 // no space before '(', but one space before'{'
 var doSomething = function(item1, item2) {
     // do something
@@ -326,7 +326,7 @@ function doSomething(item1, item2) {
 - 对象以缩进的形式书写，不要写在一行；
 - 数组、对象最后不要有逗号。
 
-```javascript
+```js
 // good
 var a = {
     b: 1,
@@ -341,7 +341,7 @@ var a = {
 - if, else, for, while, do, switch, try, catch, finally, with。
  （即使代码块的内容只有一行）
 
-```javascript
+```js
 // not good
 if (condition)
     doSomething();
@@ -362,7 +362,7 @@ if (condition) {
   - 不要用null来判断函数调用时有没有传参数
   - 不要与未初始化的变量做比较
 
-```javascript
+```js
 var a = null;
 if (a === null) {
 }
@@ -373,7 +373,7 @@ if (a === null) {
 - 永远不要直接使用undefined进行变量判断；
 - 使用typeof和字符串'undefined'对变量进行判断。
 
-```javascript
+```js
 // not good
 if (person === undefined) {
     ...
@@ -399,7 +399,7 @@ if (typeof person === 'undefined') {
 - 对上下文this的引用只能使用'_this', 'ctrl', 'self'其中一个来命名；
 - 行尾不要有空白字符；
 
-```javascript
+```js
 function Person() {
     var _this = this;
     var that = this;
@@ -422,7 +422,7 @@ function Person() {
 
 ### Last comma(逗号)
 
-```javascript
+```js
 var foo = 1,
     bar = 2,
     baz = 3;
@@ -436,7 +436,7 @@ var obj = {
 
 ### Space(空格键) vs. Tab
 
-```javascript
+```js
 //space
 function foo() {
   return "bar";
@@ -445,7 +445,7 @@ function foo() {
 
 ### Function followed by no space(方法后面不加空格)
 
-```javascript
+```js
 //no space
 function foo() {
   return "bar";
@@ -454,7 +454,7 @@ function foo() {
 
 ### Arguments definition(参数定义) with no space
 
-```javascript
+```js
 //no space
 function fn(arg1, arg2) {
 }
@@ -466,7 +466,7 @@ if (true) {
 
 ### Object Literal(字面上的对象) Definition types
 
-```javascript
+```js
 //Followed by space √
 {   foo: 1,
     bar: 2,
@@ -490,7 +490,7 @@ if (true) {
 
 ### How to write conditional statement(条件语句)
 
-```javascript
+```js
 //Condition with one space
 if (true) {
   //...
@@ -507,7 +507,7 @@ switch (v) {
 
 ### Single quote(引号)
 
-```javascript
+```js
 //Single quote
 var foo = 'bar';
 var obj = {
@@ -519,12 +519,12 @@ var obj = {
 
 > ** 感谢您的观看！ **
 
-  <a href="http://www.uw52.com" target="_blank">上海沃渡信息科技有限公司</a>
+  [上海沃渡信息科技有限公司](http://www.uw52.com)
 
 > ** 感谢Github  **
 
-  :octocat: <a href="http://sideeffect.kr/popularconvention#javascript" target="_blank">Popular Coding Convention on Github</a>
+  ![Github](https://octodex.github.com/images/linktocat.jpg "linktocat") [Popular Coding Convention on Github](http://sideeffect.kr/popularconvention#javascript)
 
 > ** 感谢腾讯全端AlloyTeam 团队  **
 
-  ✍ <a href="http://alloyteam.github.io/CodeGuide/" target="_blank">Code Guide by @AlloyTeam</a>
+  ✍ [Code Guide by @AlloyTeam](http://alloyteam.github.io/CodeGuide/)
