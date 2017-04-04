@@ -115,11 +115,11 @@ gulp.task('markdown', function() {
 
     var md = require( "markdown" ).markdown;
     // parse the markdown into a tree and grab the link references
-    // var tree = md.parse( content );
-    // var html = md.renderJsonML( md.toHTMLTree( tree ) );
-    // fs.writeFile(__dirname + '/message.md', html, (err) => {
-    //   if (err) throw err;
-    //   console.log('The file has been saved!');
-    // });
+    var tree = md.parse( content );
+    var html = md.renderJsonML( md.toHTMLTree( tree ) );
+    fs.writeFile(__dirname + '/message.html', html, (err) => {
+      if (err) throw err;
+      console.log('The file has been saved!');
+    });
 
 });
