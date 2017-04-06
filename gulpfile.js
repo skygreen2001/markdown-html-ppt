@@ -8,10 +8,11 @@
 // Please use config.js to override these selectively:
 
 var config = {
-  dest    : '',
-  vendor: {
-    css: [ ],
-    js : [ ]
+  html   : 'html',
+  dest   : '',
+  vendor : {
+      css : [ ],
+      js  : [ ]
   }
 
 };
@@ -38,7 +39,9 @@ var gulp           = require('gulp'),
     cssmin         = require('gulp-cssmin'),
     ignore         = require('gulp-ignore'),
     rename         = require('gulp-rename'),
-    path           = require('path');
+    path           = require('path'),
+    replace        = require('gulp-replace'),
+    fileinclude    = require('gulp-file-include');
 
 
 /*======================================================================
@@ -107,19 +110,27 @@ gulp.task('default', function(done){
 ======================================*/
 
 gulp.task('markdown', function() {
-    gulp.src('./bower_components/markdown/lib/markdown.js')
-    .pipe(gulp.dest(path.join(config.dest, 'js')));
+  gulp.src('./bower_components/markdown/lib/markdown.js')
+  .pipe(gulp.dest(path.join(config.dest, 'js')));
 
-    const fs = require('fs');
-    var content = fs.readFileSync(__dirname + '/demo/md/CODEGUIDE.md', 'utf8');
+  const fs = require('fs');
+  var content = fs.readFileSync(__dirname + '/demo/md/CODEGUIDE.md', 'utf8');
 
-    var md = require( "markdown" ).markdown;
-    // parse the markdown into a tree and grab the link references
-    var tree = md.parse( content );
-    var html = md.renderJsonML( md.toHTMLTree( tree ) );
-    fs.writeFile(__dirname + '/demo/index.html', html, (err) => {
-      if (err) throw err;
-      console.log('The file has been saved!');
-    });
+  var md = require( "markdown" ).markdown;
+  // parse the markdown into a tree and grab the link references
+  var tree = md.parse( content );
+  var html = md.renderJsonML( md.toHTMLTree( tree ) );
 
+  // fs.writeFile(__dirname + '/demo/index.html', html, (err) => {
+  //   if (err) throw err;
+  //   console.log('The file has been saved!');
+  // });
+
+  gulp.src(config.html + '/model/**/*.html')
+  .pipe(fileinclude({
+      prefix: '@@',
+      basepath: '@file'
+    }))
+  .pipe(replace('<!-- inject:reveal.js:content -->', html))
+  .pipe(gulp.dest(path.join(config.dest, 'www')));
 });

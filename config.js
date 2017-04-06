@@ -2,6 +2,14 @@
 
 module.exports = function(config) {
   /**
+   * The input directory.
+   *
+   * @property config.html
+   * @type {String}
+   */
+  config.html = 'html';
+
+  /**
    * The output directory.
    *
    * @property config.dest

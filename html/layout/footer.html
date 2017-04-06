@@ -1,0 +1,17 @@
+
+        <script src="@@rel-prefix/lib/js/head.min.js"></script>
+        <script src="@@rel-prefix/js/reveal.js"></script>
+
+        <script>
+            // More info https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                history: true,
+
+                // More info https://github.com/hakimel/reveal.js#dependencies
+                dependencies: [
+                    { src: '@@rel-prefix/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: '@@rel-prefix/plugin/notes/notes.js', async: true },
+                    { src: '@@rel-prefix/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+                ]
+            });
+        </script>
