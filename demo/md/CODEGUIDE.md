@@ -120,10 +120,10 @@
 - class
 - id
 - name
-- data-*
+- data-\*
 - src, for, type, href, value, max-length, max, min, pattern
 - placeholder, title, alt
-- aria-*, role
+- aria-\*, role
 - required, readonly, disabled
 
 ```html
@@ -216,7 +216,7 @@
 
 ### 注释
 
-- 注释统一用'/* */'（scss中也不要用'//'）
+- 注释统一用'/\* \*/'（scss中也不要用'//'）
 - 缩进与下一行代码保持一致；
 - 可位于一个代码行的末尾，与代码间隔一个空格。
 
@@ -396,7 +396,7 @@ if (typeof person === 'undefined') {
 - 不要混用tab和space；
 - 不要在一处使用多个tab或space；
 - 换行符统一用'LF'；
-- 对上下文this的引用只能使用'_this', 'ctrl', 'self'其中一个来命名；
+- 对上下文this的引用只能使用'\_this', 'ctrl', 'self'其中一个来命名；
 - 行尾不要有空白字符；
 
 ```js

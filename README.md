@@ -11,7 +11,6 @@ convert markdown to html format ppt that can be offline use with any web browser
 - [ ] provide Grav with a plugin to convert markdown to html5 files ppt which can be viewed with web browser suppoted html5
 
 
-
 ## 参考资料
 * hakimel/reveal.js: https://github.com/hakimel/reveal.js
 * A Markdown parser: https://github.com/evilstreak/markdown-js
