@@ -108,7 +108,6 @@ gulp.task('default', function(done){
 /*======================================
 =       Markdown to reveal.js ppt      =
 ======================================*/
-
 gulp.task('markdown', function() {
   gulp.src('./bower_components/markdown/lib/markdown.js')
   .pipe(gulp.dest(path.join(config.dest, 'js')));
@@ -126,11 +125,15 @@ gulp.task('markdown', function() {
   //   console.log('The file has been saved!');
   // });
 
-  gulp.src(config.html + '/model/**/*.html')
+  html = html.replace(new RegExp("\n","gm"),"\n        ");
+  gulp.src(config.html + '/model/common.html')
   .pipe(fileinclude({
       prefix: '@@',
       basepath: '@file'
     }))
   .pipe(replace('<!-- inject:reveal.js:content -->', html))
+  .pipe(rename({
+    basename: "codeguide"
+  }))
   .pipe(gulp.dest(path.join(config.dest, 'www')));
 });
