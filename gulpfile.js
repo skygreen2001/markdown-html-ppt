@@ -118,14 +118,29 @@ gulp.task('markdown', function() {
   var md = require( "markdown" ).markdown;
   // parse the markdown into a tree and grab the link references
   var tree = md.parse( content );
+
   var html = md.renderJsonML( md.toHTMLTree( tree ) );
+  // console.log(tree);
 
   // fs.writeFile(__dirname + '/demo/index.html', html, (err) => {
   //   if (err) throw err;
   //   console.log('The file has been saved!');
   // });
+  html = '<section data-background="white">\n' + html;
+  html = html.replace(new RegExp("\n","gm"),"\n                    ");
+  html = html.replace(new RegExp("<h2>","gm"),'\n                </section>\n                <section data-background="#4d7e65" data-background-transition="slide">\n                    <h2>');
+  html = html.replace(new RegExp("<h3>","gm"),'\n                </section>\n                <section data-background="white">\n                    <h3>');
 
-  html = html.replace(new RegExp("\n","gm"),"\n        ");
+
+
+  // html = html.replace(new RegExp("<blockquote>","gm"),"");
+  // html = html.replace(new RegExp("</blockquote>","gm"),"");
+  // html = html.replace(new RegExp("<p><strong>","gm"),"<h2>");
+  // html = html.replace(new RegExp("</strong></p>","gm"),"</h2>");
+
+
+
+
   gulp.src(config.html + '/model/common.html')
   .pipe(fileinclude({
       prefix: '@@',
