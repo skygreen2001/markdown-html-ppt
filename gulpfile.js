@@ -126,12 +126,21 @@ gulp.task('markdown', function() {
   //   if (err) throw err;
   //   console.log('The file has been saved!');
   // });
-  // html = '<section data-background="white">\n' + html;
-  html = html.replace(new RegExp("\n","gm"),"\n                ");
+
+  html = html.replace(new RegExp("\n","gm"),"\n                    ");
+  html = '<section data-background="white">\n                    <section>\n                    ' + html;
   // html = html.replace(new RegExp("<h2>","gm"),'\n                </section>\n                <section data-background="#4d7e65" data-background-transition="slide">\n                    <h2>');
   // html = html.replace(new RegExp("<h3>","gm"),'\n                </section>\n                <section data-background="white">\n                    <h3>');
 
-  html = html.replace(/<h2>(.*)<\/h2>/gi, '\n                <section role="$1">\n                    <section data-background="#4d7e65" data-background-transition="slide">\n                        <h2>$1</h2>');
+  html = html.replace(/<h2>(.*)<\/h2>/gi, '</section>\n                </section>\n            <h2>$1</h2>');
+  html = html.replace(/<h2>(.*)<\/h2>/gi, '\n                <section role="$1">\n                    <section data-background="#4d7e65" data-background-transition="slide">\n                    <h2>$1</h2>');
+  html = html.replace(/<h3>(.*)<\/h3>/gi, '\n                    </section>\n            <h3>$1</h3>');
+  html = html.replace(/<h3>(.*)<\/h3>/gi, '\n                    <section data-background="white">\n                    <h3>$1</h3>');
+
+  html = html.replace(/<ul>/gi, '<ul>\n                ');
+  html = html.replace(/<\/ul>/gi, '\n                    </ul>');
+  html = html.replace(/<li>/gi, '\n                        <li>');
+  html = html + '\n                    </section>\n';
 
   // html = html.replace(new RegExp("<blockquote>","gm"),"");
   // html = html.replace(new RegExp("</blockquote>","gm"),"");
