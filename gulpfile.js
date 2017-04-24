@@ -137,15 +137,11 @@ gulp.task('markdown', function() {
   html = html.replace(/<h3>(.*)<\/h3>/gi, '\n                    </section>\n            <h3>$1</h3>');
   html = html.replace(/<h3>(.*)<\/h3>/gi, '\n                    <section data-background="white">\n                    <h3>$1</h3>');
 
+  html = html.replace(/<p><code><\/code>`/mgi, '<p><code>');
+  html = html.replace(/<code><\/code>`<\/p>/mgi, '<\/code><\/p>');
+  html = html.replace(/<p><code>\w*/mgi, '<pre><code data-trim contenteditable>');
+  html = html.replace(/<\/code><\/p>/gi, '<\/code><\/pre>');
 
-  html = html.replace(/<p><code>\w+/mgi, '<p><code>');
-  html = html.replace(/<p><code>(\s*.*\s*)<\/code><\/p>/mgi, '<p><code1>$1<\/code1><\/p>');
-  // html = html.replace(/<p><code><\/code>`[javascript](.*)<code><\/code>`<\/p>/gi, '<p><code>$1<\/code><\/p>');
-
-  // html = html.replace(/<p><code>/gi, '<pre><code data-trim contenteditable>');
-  // html = html.replace(/<\/code><\/p>/gi, '<\/code><\/pre>');
-
-  // html = html.replace(/<ul>/gi, '<ul>\n                ');
   html = html.replace(/<\/ul>/gi, '\n                    </ul>');
   html = html.replace(/<li>/gi, '\n                        <li>');
 
