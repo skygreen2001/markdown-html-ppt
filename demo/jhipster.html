@@ -9,15 +9,15 @@
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="../css/reveal.min.css">
+        <link rel="stylesheet" href="../www/css/reveal.min.css">
         <link rel="stylesheet" href="css/jhipster.css" id="theme">
 
         <!-- For syntax highlighting -->
-        <link rel="stylesheet" href="../lib/css/zenburn.css">
+        <link rel="stylesheet" href="../www/lib/css/zenburn.css">
 
         <!-- If the query includes 'print-pdf', use the PDF print sheet -->
         <script>
-            document.write( '<link rel="stylesheet" href="../css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+            document.write( '<link rel="stylesheet" href="../www/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
         </script>
 
         <!--[if lt IE 9]>
@@ -529,7 +529,7 @@
         </div>
 
         <script src="js/jhipster/head.min.js"></script>
-        <script src="../js/reveal.min.js"></script>
+        <script src="../www/js/m.min.js"></script>
 
         <script>
 
@@ -552,12 +552,12 @@
 
                 // Optional libraries used to extend on reveal.js
                 dependencies: [
-                    { src: '../lib/js/classList.js', condition: function() { return !document.body.classList; } },
-                    { src: '../plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-                    { src: '../plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-                    { src: '../plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-                    { src: '../plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-                    { src: '../plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+                    { src: '../www/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: '../www/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: '../www/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: '../www/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: '../www/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: '../www/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
                 ]
             });
 

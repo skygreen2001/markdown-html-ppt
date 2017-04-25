@@ -6,20 +6,20 @@
 
         <title>前端代码开发规范</title>
 
-        <link rel="stylesheet" href="../css/reveal.min.css">
-        <link rel="stylesheet" href="../css/theme/black.css">
+        <link rel="stylesheet" href="../www/css/reveal.min.css">
+        <link rel="stylesheet" href="../www/css/theme/black.css">
 
         <!-- Theme used for syntax highlighting of code -->
-        <link rel="stylesheet" href="../lib/css/zenburn.css">
+        <link rel="stylesheet" href="../www/lib/css/zenburn.css">
 
         <!-- Printing and PDF exports -->
         <!-- If the query includes 'print-pdf', use the PDF print sheet -->
         <script>
-            document.write( '<link rel="stylesheet" href="../css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+            document.write( '<link rel="stylesheet" href="../www/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
         </script>
 
         <!--[if lt IE 9]>
-        <script src="../lib/js/html5shiv.js"></script>
+        <script src="../www/lib/js/html5shiv.js"></script>
         <![endif]-->
 
         <style>
@@ -645,8 +645,8 @@
             </div>
         </div>
 
-        <script src="../lib/js/head.min.js"></script>
-        <script src="../js/reveal.js"></script>
+        <script src="../www/lib/js/head.min.js"></script>
+        <script src="../www/js/m.min.js"></script>
 
         <script>
             // More info https://github.com/hakimel/reveal.js#configuration
@@ -655,9 +655,9 @@
 
                 // More info https://github.com/hakimel/reveal.js#dependencies
                 dependencies: [
-                    { src: '../lib/js/classList.js', condition: function() { return !document.body.classList; } },
-                    { src: '../plugin/notes/notes.js', async: true },
-                    { src: '../plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+                    { src: '../www/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: '../www/plugin/notes/notes.js', async: true },
+                    { src: '../www/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
                 ]
             });
         </script>

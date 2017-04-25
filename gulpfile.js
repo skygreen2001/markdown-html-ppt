@@ -8,8 +8,9 @@
 // Please use config.js to override these selectively:
 
 var config = {
-  html   : 'html',
-  dest   : '',
+  src   : 'src',
+  dest   : 'www',
+  core   : "./bower_components/reveal.js/",
   vendor : {
       css : [ ],
       js  : [ ]
@@ -34,6 +35,7 @@ var gulp           = require('gulp'),
     bower          = require('gulp-bower'),
 
     seq            = require('run-sequence'),
+    concat         = require('gulp-concat'),
     uglify         = require('gulp-uglify'),
     sourcemaps     = require('gulp-sourcemaps'),
     cssmin         = require('gulp-cssmin'),
@@ -42,6 +44,20 @@ var gulp           = require('gulp'),
     path           = require('path'),
     replace        = require('gulp-replace'),
     fileinclude    = require('gulp-file-include');
+
+/*======================================================================
+=            Copy all core reveal directory                            =
+======================================================================*/
+gulp.task('core', function () {
+  gulp.src([
+    config.core + 'css/reveal.css',
+    config.core + 'css/print/*.css',
+    config.core + 'css/theme/*.css',
+    config.core + 'lib/**/*',
+    config.core + 'plugin/**/*'
+  ], { base: config.core })
+  .pipe(gulp.dest(path.join( config.dest )));
+});
 
 
 /*======================================================================
@@ -65,6 +81,11 @@ gulp.task('css', function () {
 
 gulp.task('js', function() {
   gulp.src(config.vendor.js)
+  .pipe(concat('m.js'))
+  .pipe(gulp.dest(path.join(config.dest, 'js')));
+
+  gulp.src(config.vendor.js)
+  .pipe(concat('m.js'))
   .pipe(uglify())
   .pipe(rename({suffix: '.min'}))
   .pipe(gulp.dest(path.join(config.dest, 'js')));
@@ -76,8 +97,8 @@ gulp.task('js', function() {
 ======================================*/
 
 gulp.task('build', function(done) {
-  var tasks = ['js'];
-  seq('css', tasks, done);
+  var tasks = ['css', 'js'];
+  seq('core', tasks, done);
 });
 
 /*======================================
@@ -109,11 +130,11 @@ gulp.task('default', function(done){
 =       Markdown to reveal.js ppt      =
 ======================================*/
 gulp.task('markdown', function() {
-  gulp.src('./bower_components/markdown/lib/markdown.js')
-  .pipe(gulp.dest(path.join(config.dest, 'js')));
+  // gulp.src('./bower_components/markdown/lib/markdown.js')
+  // .pipe(gulp.dest(path.join(config.dest, 'js')));
 
   const fs = require('fs');
-  var content = fs.readFileSync(__dirname + '/demo/md/CODEGUIDE.md', 'utf8');
+  var content = fs.readFileSync(__dirname + '/md/CODEGUIDE.md', 'utf8');
 
   var md = require( "markdown" ).markdown;
   // parse the markdown into a tree and grab the link references
@@ -152,7 +173,7 @@ gulp.task('markdown', function() {
   html = html.replace(new RegExp("<p><strong>","gm"),"<h2>");
   html = html.replace(new RegExp("</strong></p>","gm"),"</h2>");
 
-  gulp.src(config.html + '/model/common.html')
+  gulp.src(config.src + '/model/common.html')
   .pipe(fileinclude({
       prefix: '@@',
       basepath: '@file'
@@ -161,5 +182,5 @@ gulp.task('markdown', function() {
   .pipe(rename({
     basename: "codeguide"
   }))
-  .pipe(gulp.dest(path.join(config.dest, 'www')));
+  .pipe(gulp.dest(path.join(config.dest)));
 });

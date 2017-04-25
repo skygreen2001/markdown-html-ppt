@@ -16,6 +16,7 @@
     "gulp-replace": "^0.4.0",
     "gulp-sourcemaps": "^1.1.0",
     "gulp-uglify": "^2.0.0",
+    "gulp-concat": "^2.3.4",
     "run-sequence": "^0.3.6"
   },
   "dependencies": {

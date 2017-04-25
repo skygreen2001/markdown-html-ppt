@@ -7,7 +7,7 @@ module.exports = function(config) {
    * @property config.html
    * @type {String}
    */
-  config.html = 'html';
+  config.src = 'src';
 
   /**
    * The output directory.
@@ -15,8 +15,15 @@ module.exports = function(config) {
    * @property config.dest
    * @type {String}
    */
-  config.dest = '';
+  config.dest = 'www';
 
+  /**
+   * The reveal.js directory.
+   *
+   * @property config.core
+   * @type {String}
+   */
+  config.core = "./bower_components/reveal.js/";
   //
   // 3rd party components
   //
@@ -37,5 +44,6 @@ module.exports = function(config) {
    */
   //浏览器兼容性Javascript原生对象函数支持
   config.vendor.js.push('./bower_components/reveal.js/js/reveal.js');
+  config.vendor.js.push('./bower_components/markdown/lib/markdown.js');
 
 };
