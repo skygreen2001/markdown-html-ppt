@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <title>前端代码开发规范</title>
+
+        <link rel="stylesheet" href="./css/reveal.min.css">
+        <link rel="stylesheet" href="./css/theme/black.css">
+
+        <!-- Theme used for syntax highlighting of code -->
+        <link rel="stylesheet" href="./lib/css/zenburn.css">
+
+        <!-- Printing and PDF exports -->
+        <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+        <script>
+            document.write( '<link rel="stylesheet" href="./css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <style>
+        .reveal h2 {
+            font-size: 2em;
+        }
+        .reveal h3 {
+            font-size: 1.8em;
+        }
+        .reveal pre {
+            box-shadow:none;
+        }
+        .reveal li {
+            font-size: 0.8em;
+        }
+        .reveal pre code {
+          padding: 15px;
+        }
+        </style>
+
+    </head>
+    <body>
+
+        <div class="reveal">
+            <div class="slides">
+                <section data-background="white">
+                    <section>
+                    <h1>前端代码开发规范</h1>
+                    
+                    <h2> 导演：周月璞 </h2><h2> 制片：周月璞 </h2>
+                    
+                    </section>
+                </section>
+            
+                <section role="前端代码开发规范共包括以下六个部分">
+                    <section data-background="#4d7e65" data-background-transition="slide">
+                    <h2>前端代码开发规范共包括以下六个部分</h2>
+                    
+                    <ul>
+                        <li>命名规则</li>
+                        <li>HTML</li>
+                        <li>CSS, SCSS, LESS, SASS</li>
+                        <li>JavaScript</li>
+                        <li>GitHub命名规范</li>
+                        <li>项目实践</li>
+                    </ul>
+                    
+                    </section>
+                </section>
+            
+                <section role="命名规则">
+                    <section data-background="#4d7e65" data-background-transition="slide">
+                    <h2>命名规则</h2>
+                    
+                    <ul>
+                        <li>项目命名</li>
+                        <li>目录命名</li>
+                        <li>JS文件命名</li>
+                        <li>CSS, SCSS文件命名</li>
+                        <li>HTML文件命名</li>
+                    </ul>
+                    
+                    
+                    </section>
+            
+                    <section data-background="white">
+                    <h3>项目命名</h3>
+                    
+                    <p>全部采用小写方式，以下划线分隔。</p>
+                    
+                    <pre><code data-trim contenteditable>
+                    例：my_project_name
+                    </code></pre>
+                    
+                    
+                    </section>
+            
+                    <section data-background="white">
+                    <h3>目录命名</h3>
+                    
+                    <p>参照项目命名规则；有复数结构时，要采用复数命名法。</p>
+                    
+                    <pre><code data-trim contenteditable>
+                    例：scripts, styles, images, data_models
+                    </code></pre>
+                    
+                    
+                    </section>
+            
+                    <section data-background="white">
+                    <h3>JS文件命名</h3>
+                    
+                    <p>参照项目命名规则。</p>
+                    
+                    <pre><code data-trim contenteditable>
+                    例：account_model.js
+                    </code></pre>
+                    
+                    
+                    </section>
+            
+                    <section data-background="white">
+                    <h3>CSS, SCSS文件命名</h3>
+                    
+                    <p>参照项目命名规则。</p>
+                    
+                    <pre><code data-trim contenteditable>
+                    例：retina_sprites.css
+                    </code></pre>
+                    
+                    
+                    </section>
+            
+                    <section data-background="white">
+                    <h3>HTML文件命名</h3>
+                    
+                    <p>参照项目命名规则。</p>
+                    
+                    <pre><code data-trim contenteditable>
+                    例：error_report.html
+                    </code></pre>
+                    
+                    </section>
+                </section>
+            
+                <section role="HTML">
+                    <section data-background="#4d7e65" data-background-transition="slide">
+                    <h2>HTML</h2>
+                    
+                    <ul>
+                        <li>语法</li>
+                        <li>lang属性</li>
+                        <li>字符编码</li>
+                        <li>IE兼容模式</li>
+                        <li>属性顺序</li>
+                        <li>尽量避免JS生成标签</li>
+                        <li>减少标签数量</li>
+                    </ul>
+                    
+                    
+                    </section>
+            
+                    <section data-background="white">
+                    <h3>语法</h3>
+                    
+                    <ul>
+                        <li>缩进使用soft tab（4个空格）</li>
+                        <li>嵌套的节点应该缩进</li>
+                        <li>在属性上，使用双引号，不要使用单引号</li>
+                        <li>属性名全小写，用中划线做分隔符</li>
+                        <li>不要在自动闭合标签结尾处使用斜线（HTML5 规范 指出他们是可选的）</li>
+                    </ul>
+                    
+                    <pre><code data-trim contenteditable>
+                    &lt;html&gt;
+                        &lt;body&gt;
+                            &lt;img src=&quot;images/company_logo.png&quot; alt=&quot;Company&quot;&gt;
+                            &lt;h1 class=&quot;hello-world&quot;&gt;Hello, world!&lt;/h1&gt;
+                        &lt;/body&gt;
+                    &lt;/html&gt;
+                    </code></pre>
+                    
+                    
+                    </section>
+            
+                    <section data-background="white">
+                    <h3>lang属性</h3>
+                    
+                    <ul>
+                        <li><p>根据HTML5规范：应在html标签上加上lang属性。</p><p>这会给语音工具和翻译工具帮助，告诉它们应当怎么去发音和翻译。</p></li>
+                        <li><p>例如中文只给出了zh，但是没有区分香港，台湾，大陆。</p><p>而微软给出了一份更加详细的语言列表，其中细分了zh-cn, zh-hk, zh-tw。</p></li>
+                    </ul>
+                    
+                    <pre><code data-trim contenteditable>
+                    &lt;html lang=&quot;en-us&quot;&gt;
+                    ...
+                    &lt;/html&gt;
+                    </code></pre>
+                    
+                    
+                    </section>
+            
+                    <section data-background="white">
+                    <h3>字符编码</h3>
+                    
+                    <p>通过声明一个明确的字符编码，让浏览器轻松、快速的确定适合网页内容的渲染方式，通常指定为&#39;UTF-8&#39;。</p>
+                    
+                    <pre><code data-trim contenteditable>
+                    &lt;meta charset=&quot;UTF-8&quot;&gt;
+                    </code></pre>
+                    
+                    
+                    </section>
+            
+                    <section data-background="white">
+                    <h3>IE兼容模式</h3>
+                    
+                    <p>用 &lt;meta&gt; 标签可以指定页面应该用什么版本的IE来渲染；</p>
+                    
+                    <pre><code data-trim contenteditable>
+                    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=Edge&quot;&gt;
+                    </code></pre>
+                    
+                    
+                    </section>
+            
+                    <section data-background="white">
+                    <h3>属性顺序</h3>
+                    
+                    <ul>
+                        <li>class</li>
+                        <li>id</li>
+                        <li>name</li>
+                        <li>data-*</li>
+                        <li>src, for, type, href, value, max-length, max, min, pattern</li>
+                        <li>placeholder, title, alt</li>
+                        <li>aria-*, role</li>
+                        <li>required, readonly, disabled</li>
+                    </ul>
+                    
+                    <pre><code data-trim contenteditable>
+                    &lt;a class=&quot;...&quot; id=&quot;...&quot; data-modal=&quot;toggle&quot; href=&quot;#&quot;&gt;Example link&lt;/a&gt;
+                    </code></pre>
+                    
+                    
+                    </section>
+            
+                    <section data-background="white">
+                    <h3>尽量避免JS生成标签</h3>
+                    
+                    <p>在JS文件中生成标签让内容变得更难查找，更难编辑，性能更差。应该尽量避免这种情况的出现。</p>
+                    
+                    
+                    </section>
+            
+                    <section data-background="white">
+                    <h3>减少标签数量</h3>
+                    
+                    <p>在编写HTML代码时，需要尽量避免多余的父节点；很多时候，需要通过迭代和重构来使HTML变得更少。</p>
+                    
+                    <pre><code data-trim contenteditable>
+                    &lt;span class=&quot;avatar&quot;&gt;&lt;img src=&quot;...&quot;&gt;&lt;/span&gt;
+                    </code></pre>
+                    
+                    </section>
+                </section>
+            
+                <section role="CSS, SCSS, LESS, SASS">
+                    <section data-background="#4d7e65" data-background-transition="slide">
+                    <h2>CSS, SCSS, LESS, SASS</h2>
+                    
+                    <ul>
+                        <li>缩进</li>
+                        <li>分号</li>
+                        <li>空格</li>
+                        <li>换行</li>
+                        <li>注释</li>
+                        <li>引号</li>
+                        <li>命名</li>
+                    </ul>
+                    
+                    
+                    </section>
+            
+                    <section data-background="white">
+                    <h3>缩进</h3>
+                    
+                    <p>使用soft tab（4个空格）。</p>
+                    
+                    <pre><code data-trim contenteditable>
+                    .element {
+                        position: absolute;
+                        top: 10px;
+                        left: 10px;
+                    }
+                    </code></pre>
+                    
+                    
+                    </section>
+            
+                    <section data-background="white">
+                    <h3>分号</h3>
+                    
+                    <p>每个属性声明末尾都要加分号。</p>
+                    
+                    <pre><code data-trim contenteditable>
+                    .element {
+                        width: 20px;
+                        height: 20px;
+                        background-color: red;
+                    }
+                    </code></pre>
+                    
+                    
+                    </section>
+            
+                    <section data-background="white">
+                    <h3>空格</h3>
+                    
+                    <p>以下几种情况不需要空格:</p>
+                    
+                    <ul>
+                        <li>属性名后</li>
+                        <li>多个规则的分隔符&#39;,&#39;前</li>
+                        <li>!important &#39;!&#39;后</li>
+                        <li>属性值中&#39;(&#39;后和&#39;)&#39;前</li>
+                        <li>行末不要有多余的空格</li>
+                    </ul>
+                    
+                    <pre><code data-trim contenteditable>
+                    .element {
+                        color: red !important;
+                        background-color: rgba(0, 0, 0, .5);
+                        ...
+                    }
+                    </code></pre>
+                    
+                    
+                    </section>
+            
+                    <section data-background="white">
+                    <h3>换行</h3>
+                    
+                    <p>以下几种情况需要换行:</p>
+                    
+                    <ul>
+                        <li>&#39;{&#39;后和&#39;}&#39;前</li>
+                        <li>每个属性独占一行</li>
+                        <li>多个规则的分隔符&#39;,&#39;后</li>
+                        <li>&#39;{&#39;前  (这个不需要换行的)</li>
+                    </ul>
+                    
+                    <pre><code data-trim contenteditable>
+                    .element {
+                        color: red;
+                        background-color: black;
+                    }
+                    .element,
+                    .dialog {
+                        ...
+                    }
+                    </code></pre>
+                    
+                    
+                    </section>
+            
+                    <section data-background="white">
+                    <h3>注释</h3>
+                    
+                    <ul>
+                        <li>注释统一用&#39;/* */&#39;（scss中也不要用&#39;//&#39;）</li>
+                        <li>缩进与下一行代码保持一致；</li>
+                        <li>可位于一个代码行的末尾，与代码间隔一个空格。</li>
+                    </ul>
+                    
+                    <pre><code data-trim contenteditable>
+                    .modal-header {
+                        /<em> 50px </em>/
+                        width: 50px;</p>
+                    
+                    <pre><code>color: red; /* color red */</code></pre>
+                    
+                    <p>}
+                    </code></pre>
+                    
+                    
+                    </section>
+            
+                    <section data-background="white">
+                    <h3>引号</h3>
+                    
+                    <ul>
+                        <li>最外层统一使用双引号；</li>
+                        <li>url的内容要用引号；</li>
+                        <li>属性选择器中的属性值需要引号。</li>
+                    </ul>
+                    
+                    <pre><code data-trim contenteditable>
+                    .element:after {
+                        content: &quot;&quot;;
+                        background-image: url(&quot;logo.png&quot;);
+                    }
+                    li[data-type=&quot;single&quot;] {
+                    }
+                    </code></pre>
+                    
+                    
+                    </section>
+            
+                    <section data-background="white">
+                    <h3>命名</h3>
+                    
+                    <ul>
+                        <li>类名使用小写字母，以中划线分隔</li>
+                        <li>id使用小写字母，以中划线分隔</li>
+                    </ul>
+                    
+                    <pre><code data-trim contenteditable>
+                    /<em> class </em>/
+                    .element-content {
+                    }
+                    /<em> id </em>/</p>
+                    
+                    <h1>my-dialog {</h1>
+                    
+                    <p>}
+                    </code></pre>
+                    
+                    </section>
+                </section>
+            
+                <section role="JavaScript">
+                    <section data-background="#4d7e65" data-background-transition="slide">
+                    <h2>JavaScript</h2>
+                    
+                    <ul>
+                        <li>引号</li>
+                        <li>变量命名</li>
+                        <li>变量声明</li>
+                        <li>函数</li>
+                        <li>数组、对象</li>
+                        <li>括号</li>
+                        <li>null</li>
+                        <li>undefined</li>
+                        <li>jshint</li>
+                        <li>杂项</li>
+                    </ul>
+                    
+                    
+                    </section>
+            
+                    <section data-background="white">
+                    <h3>引号</h3>
+                    
+                    <p>最外层统一使用单引号。</p>
+                    
+                    <pre><code data-trim contenteditable>
+                    var y = &#39;foo&#39;,
+                    z = &#39;&lt;div id=&quot;test&quot;&gt;&lt;/div&gt;&#39;;
+                    </code></pre>
+                    
+                    
+                    </section>
+            
+                    <section data-background="white">
+                    <h3>变量命名</h3>
+                    
+                    <ul>
+                        <li>标准变量采用驼峰式命名</li>
+                        <li>&#39;ID&#39;在变量名中全大写</li>
+                        <li>&#39;URL&#39;在变量名中全大写</li>
+                        <li>&#39;Android&#39;在变量名中大写第一个字母</li>
+                        <li>&#39;iOS&#39;在变量名中小写第一个，大写后两个字母</li>
+                        <li>常量全大写，用下划线连接</li>
+                        <li>构造函数，大写第一个字母</li>
+                        <li>jquery对象必须以&#39;$&#39;开头命名</li>
+                    </ul>
+                    
+                    
+                    </section>
+            
+                    <section data-background="white">
+                    <h3>变量声明</h3>
+                    
+                    <p>一个函数作用域中所有的变量声明尽量提到函数首部，
+                    用一个var声明，不允许出现两个连续的var声明。</p>
+                    
+                    <pre><code data-trim contenteditable>
+                    function doSomethingWithItems(items) {
+                        // use one var
+                        var value = 10,
+                            result = value + 10,
+                            i,
+                            len;
+                        for (i = 0, len = items.length; i &lt; len; i++) {
+                            result += 10;
+                        }
+                    }
+                    </code></pre>
+                    
+                    
+                    </section>
+            
+                    <section data-background="white">
+                    <h3>函数</h3>
+                    
+                    <ul>
+                        <li>无论是函数声明还是函数表达式，&#39;(&#39;前不要空格，但&#39;{&#39;前一定要有空格；</li>
+                        <li>参数之间用&#39;, &#39;分隔，注意逗号后有一个空格。</li>
+                    </ul>
+                    
+                    <pre><code data-trim contenteditable>
+                    // no space before &#39;(&#39;, but one space before&#39;{&#39;
+                    var doSomething = function(item1, item2) {
+                        // do something
+                    };
+                    function doSomething(item1, item2) {
+                        // do something
+                    }
+                    </code></pre>
+                    
+                    
+                    </section>
+            
+                    <section data-background="white">
+                    <h3>数组、对象</h3>
+                    
+                    <ul>
+                        <li>对象属性名不需要加引号；</li>
+                        <li>对象以缩进的形式书写，不要写在一行；</li>
+                        <li>数组、对象最后不要有逗号。</li>
+                    </ul>
+                    
+                    <pre><code data-trim contenteditable>
+                    // good
+                    var a = {
+                        b: 1,
+                        c: 2
+                    };
+                    </code></pre>
+                    
+                    
+                    </section>
+            
+                    <section data-background="white">
+                    <h3>括号</h3>
+                    
+                    <p>下列关键字后必须有大括号:</p>
+                    
+                    <ul>
+                        <li>if, else, for, while, do, switch, try, catch, finally, with。
+                    （即使代码块的内容只有一行）</li>
+                    </ul>
+                    
+                    <pre><code data-trim contenteditable>
+                    // not good
+                    if (condition)
+                        doSomething();
+                    // good
+                    if (condition) {
+                        doSomething();
+                    }
+                    </code></pre>
+                    
+                    
+                    </section>
+            
+                    <section data-background="white">
+                    <h3>null</h3>
+                    
+                    <ul>
+                        <li><p>适用场景</p><ul>
+                        <li>初始化一个将来可能被赋值为对象的变量</li>
+                        <li>与已经初始化的变量做比较</li>
+                        <li><p>作为一个返回对象的函数的返回值</p></li>
+                    </ul></li>
+                        <li><p>不适用场景</p><ul>
+                        <li>不要用null来判断函数调用时有没有传参数</li>
+                        <li>不要与未初始化的变量做比较</li>
+                    </ul></li>
+                    </ul>
+                    
+                    <pre><code data-trim contenteditable>
+                    var a = null;
+                    if (a === null) {
+                    }
+                    </code></pre>
+                    
+                    
+                    </section>
+            
+                    <section data-background="white">
+                    <h3>undefined</h3>
+                    
+                    <ul>
+                        <li>永远不要直接使用undefined进行变量判断；</li>
+                        <li>使用typeof和字符串&#39;undefined&#39;对变量进行判断。</li>
+                    </ul>
+                    
+                    <pre><code data-trim contenteditable>
+                    // not good
+                    if (person === undefined) {
+                        ...
+                    }
+                    // good
+                    if (typeof person === &#39;undefined&#39;) {
+                        ...
+                    }
+                    </code></pre>
+                    
+                    
+                    </section>
+            
+                    <section data-background="white">
+                    <h3>jshint</h3>
+                    
+                    <ul>
+                        <li>用&#39;===&#39;, &#39;!==&#39;代替&#39;==&#39;, &#39;!=&#39;；</li>
+                        <li>for-in里一定要有hasOwnProperty的判断；</li>
+                        <li>变量不要先使用后声明；</li>
+                        <li>不要在一句代码中单单使用构造函数，记得将其赋值给某个变量；</li>
+                        <li>不要在同个作用域下声明同名变量；</li>
+                        <li>不要在一些不需要的地方加括号，例：delete(a.b)；</li>
+                    </ul>
+                    
+                    
+                    </section>
+            
+                    <section data-background="white">
+                    <h3>杂项</h3>
+                    
+                    <ul>
+                        <li>不要混用tab和space；</li>
+                        <li>不要在一处使用多个tab或space；</li>
+                        <li>换行符统一用&#39;LF&#39;；</li>
+                        <li>对上下文this的引用只能使用&#39;_this&#39;, &#39;ctrl&#39;, &#39;self&#39;其中一个来命名；</li>
+                        <li>行尾不要有空白字符；</li>
+                    </ul>
+                    
+                    <pre><code data-trim contenteditable>
+                    function Person() {
+                        var _this = this;
+                        var that = this;
+                        // good
+                        var self = this;
+                    }
+                    </code></pre>
+                    
+                    </section>
+                </section>
+            
+                <section role="Github Coding Convention">
+                    <section data-background="#4d7e65" data-background-transition="slide">
+                    <h2>Github Coding Convention</h2>
+                    
+                    <p>这里专指Github社区中总结的 <strong>JavaScript</strong> 的代码标准</p>
+                    
+                    <ul>
+                        <li>Last comma(逗号)</li>
+                        <li>Space(空格键)</li>
+                        <li>Function followed by no space(方法后面不加空格)</li>
+                        <li>Arguments definition(参数定义) with no space</li>
+                        <li>Object Literal(对象字面量) Definition types</li>
+                        <li>How to write conditional statement(条件语句)</li>
+                        <li>Single quote(引号)</li>
+                    </ul>
+                    
+                    
+                    </section>
+            
+                    <section data-background="white">
+                    <h3>Last comma(逗号)</h3>
+                    
+                    <pre><code data-trim contenteditable>
+                    var foo = 1,
+                        bar = 2,
+                        baz = 3;</p>
+                    
+                    <p>var obj = {
+                        foo: 1,
+                        bar: 2,
+                        baz: 3
+                    };
+                    </code></pre>
+                    
+                    
+                    </section>
+            
+                    <section data-background="white">
+                    <h3>Space(空格键) vs. Tab</h3>
+                    
+                    <pre><code data-trim contenteditable>
+                    //space
+                    function foo() {
+                      return &quot;bar&quot;;
+                    }
+                    </code></pre>
+                    
+                    
+                    </section>
+            
+                    <section data-background="white">
+                    <h3>Function followed by no space(方法后面不加空格)</h3>
+                    
+                    <pre><code data-trim contenteditable>
+                    //no space
+                    function foo() {
+                      return &quot;bar&quot;;
+                    }
+                    </code></pre>
+                    
+                    
+                    </section>
+            
+                    <section data-background="white">
+                    <h3>Arguments definition(参数定义) with no space</h3>
+                    
+                    <pre><code data-trim contenteditable>
+                    //no space
+                    function fn(arg1, arg2) {
+                    }
+                    //or
+                    if (true) {
+                        ...
+                    }
+                    </code></pre>
+                    
+                    
+                    </section>
+            
+                    <section data-background="white">
+                    <h3>Object Literal(字面上的对象) Definition types</h3>
+                    
+                    <pre><code data-trim contenteditable>
+                    //Followed by space √
+                    { <br/>  foo: 1,
+                      bar: 2,
+                      baz: 3
+                    }</p>
+                    
+                    <p>//No space
+                    {
+                      foo:1,
+                      bar:2,
+                      baz:3
+                    }</p>
+                    
+                    <p>//Using space in before/after
+                    {
+                      foo : 1,
+                      bar : 2,
+                      baz : 3
+                    }
+                    </code></pre>
+                    
+                    
+                    </section>
+            
+                    <section data-background="white">
+                    <h3>How to write conditional statement(条件语句)</h3>
+                    
+                    <pre><code data-trim contenteditable>
+                    //Condition with one space
+                    if (true) {
+                      //...
+                    }</p>
+                    
+                    <p>while (true) {
+                      //...
+                    }</p>
+                    
+                    <p>switch (v) {
+                      //...
+                    }
+                    </code></pre>
+                    
+                    
+                    </section>
+            
+                    <section data-background="white">
+                    <h3>Single quote(引号)</h3>
+                    
+                    <pre><code data-trim contenteditable>
+                    //Single quote
+                    var foo = &#39;bar&#39;;
+                    var obj = {
+                        &#39;foo&#39;: &#39;bar&#39;
+                    };
+                    </code></pre>
+                    
+                    </section>
+                </section>
+            
+                <section role="谢谢您的关注">
+                    <section data-background="#4d7e65" data-background-transition="slide">
+                    <h2>谢谢您的关注</h2>
+                    
+                    
+                    </section>
+            
+                    <section data-background="white">
+                    <h3>感谢您的观看！</h3>
+                    
+                    <p>  <a href="http://www.uw52.com">上海沃渡信息科技有限公司</a></p>
+                    
+                    
+                    </section>
+            
+                    <section data-background="white">
+                    <h3>感谢Github</h3>
+                    
+                    <p>  <img alt="Github" title="linktocat" src="https://octodex.github.com/images/linktocat.jpg"/></p>
+                    
+                    <p>  <a href="http://sideeffect.kr/popularconvention#javascript">Popular Coding Convention on Github</a></p>
+                    
+                    
+                    </section>
+            
+                    <section data-background="white">
+                    <h3>感谢腾讯全端AlloyTeam 团队</h3>
+                    
+                    <p>  ✍ <a href="http://alloyteam.github.io/CodeGuide/">Code Guide by @AlloyTeam</a></p>
+                    </section>
+                </section>
+
+            </div>
+        </div>
+
+        <!--footer begin-->
+        
+        <script src="./lib/js/head.min.js"></script>
+        <script src="./js/m.min.js"></script>
+
+        <script>
+            // More info https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                history: true,
+
+                // More info https://github.com/hakimel/reveal.js#dependencies
+                dependencies: [
+                    { src: './lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: './plugin/notes/notes.js', async: true },
+                    { src: './plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+                ]
+            });
+        </script>
+
+        <!--footer end-->
+    </body>
+</html>
