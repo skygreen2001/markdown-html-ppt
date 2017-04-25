@@ -1,17 +1,18 @@
-# 前端代码开发规范
+# 前端开发代码规范
 
 > ** 导演：周月璞 **
 
 > ** 制片：周月璞 **
 
-## 前端代码开发规范共包括以下六个部分
+## 概述
+
+前端代码开发规范共包括以下五个部分
 
 - 命名规则
 - HTML
 - CSS, SCSS, LESS, SASS
 - JavaScript
-- GitHub命名规范
-- 项目实践
+- GitHub代码规范
 
 ## 命名规则
 - 项目命名
@@ -30,7 +31,8 @@
 
 ### 目录命名
 
-参照项目命名规则；有复数结构时，要采用复数命名法。
+- 参照项目命名规则；
+- 有复数结构时，要采用复数命名法。
 
 ```
 例：scripts, styles, images, data_models
@@ -102,7 +104,9 @@
 
 ### 字符编码
 
-通过声明一个明确的字符编码，让浏览器轻松、快速的确定适合网页内容的渲染方式，通常指定为'UTF-8'。
+- 通过声明一个明确的字符编码，让浏览器轻松、快速的确定适合网页内容的渲染方式
+
+- 通常指定为'UTF-8'
 
 ```html
 <meta charset="UTF-8">
@@ -110,7 +114,7 @@
 
 ### IE兼容模式
 
-用 <meta> 标签可以指定页面应该用什么版本的IE来渲染；
+用 <meta> 标签指定页面应该用什么版本的IE渲染
 
 ```html
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -132,11 +136,13 @@
 
 ### 尽量避免JS生成标签
 
-在JS文件中生成标签让内容变得更难查找，更难编辑，性能更差。应该尽量避免这种情况的出现。
+- JS文件中生成标签让内容变得更难查找、更难编辑、性能更差
+- 应该尽量避免这种情况的出现
 
 ### 减少标签数量
 
-在编写HTML代码时，需要尽量避免多余的父节点；很多时候，需要通过迭代和重构来使HTML变得更少。
+- 在编写HTML代码时，需要尽量避免多余的父节点
+- 很多时候，需要通过迭代和重构来使HTML变得更少
 
 ```html
 <span class="avatar"><img src="..."></span>
@@ -245,17 +251,16 @@ li[data-type="single"] {
 ```
 
 ### 命名
-
 - 类名使用小写字母，以中划线分隔
 - id使用小写字母，以中划线分隔
 
 ```css
-/* class */
-.element-content {
-}
-/* id */
-#my-dialog {
-}
+ /* class */
+ .element-content {
+ }
+ /* id */
+ #my-dialog {
+ }
 ```
 
 ## JavaScript
@@ -468,7 +473,7 @@ if (true) {
 
 ```javascript
 //Followed by space √
-{   
+{
   foo: 1,
   bar: 2,
   baz: 3
@@ -528,6 +533,6 @@ var obj = {
 
   [Popular Coding Convention on Github](http://sideeffect.kr/popularconvention#javascript)
 
-### 感谢腾讯全端AlloyTeam 团队
+### 感谢腾讯AlloyTeam 团队
 
   ✍ [Code Guide by @AlloyTeam](http://alloyteam.github.io/CodeGuide/)

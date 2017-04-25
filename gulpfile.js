@@ -130,17 +130,14 @@ gulp.task('default', function(done){
 =       Markdown to reveal.js ppt      =
 ======================================*/
 gulp.task('markdown', function() {
-  // gulp.src('./bower_components/markdown/lib/markdown.js')
-  // .pipe(gulp.dest(path.join(config.dest, 'js')));
-
   const fs = require('fs');
   var content = fs.readFileSync(__dirname + '/md/CODEGUIDE.md', 'utf8');
-
   var md = require( "markdown" ).markdown;
-  // parse the markdown into a tree and grab the link references
-  var tree = md.parse( content );
+  var html = md.toHTML(content);
 
-  var html = md.renderJsonML( md.toHTMLTree( tree ) );
+  // parse the markdown into a tree and grab the link references
+  // var tree = md.parse( content );
+  // var html = md.renderJsonML( md.toHTMLTree( tree ) );
   // console.log(tree);
 
   // fs.writeFile(__dirname + '/demo/index.html', html, (err) => {
@@ -160,8 +157,13 @@ gulp.task('markdown', function() {
 
   html = html.replace(/<p><code><\/code>`/mgi, '<p><code>');
   html = html.replace(/<code><\/code>`<\/p>/mgi, '<\/code><\/p>');
+  html = html.replace(/<\/p>(\s*)<pre><code>/mgi, '$1    ');
+  html = html.replace(/<\/code><\/pre>(\s*)<p>/mgi, '$1');
+
   html = html.replace(/<p><code>\w*/mgi, '<pre><code data-trim contenteditable>');
   html = html.replace(/<\/code><\/p>/gi, '<\/code><\/pre>');
+  html = html.replace(/<(\/)?em>/mgi, '*');
+  html = html.replace(/<\/p>(\s+)<p>/mgi, '$1');
 
   html = html.replace(/<\/ul>/gi, '\n                    </ul>');
   html = html.replace(/<li>/gi, '\n                        <li>');

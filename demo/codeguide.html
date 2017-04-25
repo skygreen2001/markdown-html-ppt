@@ -24,7 +24,7 @@
 
         <style>
         .reveal h2 {
-            font-size: 2em;
+            font-size: 1.8em;
         }
         .reveal h3 {
             font-size: 1em;
@@ -45,8 +45,8 @@
             <div class="slides">
                 <section data-background="white">
                     <h1>前端开发代码规范</h1>
-                    <h2>制片：周月璞</h2>
                     <h2>导演：周月璞</h2>
+                    <h2>制片：周月璞</h2>
                 </section>
                 <section role="命名规则">
                     <section data-background="#4d7e65" data-background-transition="slide">
@@ -578,10 +578,25 @@
                         <h2>Object Literal(字面上的对象) Definition types</h2>
                         <pre>
                             <code data-trim contenteditable>
-                                //Followed by space
-                                {   foo: 1,
-                                    bar: 2,
-                                    baz: 3
+                                //Followed by space √
+                                {
+                                  foo: 1,
+                                  bar: 2,
+                                  baz: 3
+                                }
+
+                                //No space
+                                {
+                                  foo:1,
+                                  bar:2,
+                                  baz:3
+                                }
+
+                                //Using space in before/after
+                                {
+                                  foo : 1,
+                                  bar : 2,
+                                  baz : 3
                                 }
                             </code>
                         </pre>
@@ -635,7 +650,7 @@
                     </section>
 
                     <section data-background="white">
-                        <h2>感谢腾讯全端AlloyTeam 团队</h2>
+                        <h2>感谢腾讯AlloyTeam 团队</h2>
                         <p>
                             ✍ <a href="http://alloyteam.github.io/CodeGuide/" target="_blank">Code Guide by @AlloyTeam</a>
                         </p>

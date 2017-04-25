@@ -43,6 +43,12 @@
         .reveal pre code {
           padding: 15px;
         }
+        .reveal section img {
+          display: block;
+          box-shadow:0 0 0;
+          margin:20px auto;
+          width:280px;
+        }
         </style>
 
     </head>
@@ -52,24 +58,25 @@
             <div class="slides">
                 <section data-background="white">
                     <section>
-                    <h1>前端代码开发规范</h1>
+                    <h1>前端开发代码规范</h1>
                     
                     <h2> 导演：周月璞 </h2><h2> 制片：周月璞 </h2>
                     
                     </section>
                 </section>
             
-                <section role="前端代码开发规范共包括以下六个部分">
+                <section role="概述">
                     <section data-background="#4d7e65" data-background-transition="slide">
-                    <h2>前端代码开发规范共包括以下六个部分</h2>
+                    <h2>概述</h2>
+                    
+                    <p>前端代码开发规范共包括以下五个部分</p>
                     
                     <ul>
                         <li>命名规则</li>
                         <li>HTML</li>
                         <li>CSS, SCSS, LESS, SASS</li>
                         <li>JavaScript</li>
-                        <li>GitHub命名规范</li>
-                        <li>项目实践</li>
+                        <li>GitHub代码规范</li>
                     </ul>
                     
                     </section>
@@ -105,7 +112,10 @@
                     <section data-background="white">
                     <h3>目录命名</h3>
                     
-                    <p>参照项目命名规则；有复数结构时，要采用复数命名法。</p>
+                    <ul>
+                        <li>参照项目命名规则；</li>
+                        <li>有复数结构时，要采用复数命名法。</li>
+                    </ul>
                     
                     <pre><code data-trim contenteditable>
                     例：scripts, styles, images, data_models
@@ -210,7 +220,10 @@
                     <section data-background="white">
                     <h3>字符编码</h3>
                     
-                    <p>通过声明一个明确的字符编码，让浏览器轻松、快速的确定适合网页内容的渲染方式，通常指定为&#39;UTF-8&#39;。</p>
+                    <ul>
+                        <li><p>通过声明一个明确的字符编码，让浏览器轻松、快速的确定适合网页内容的渲染方式</p></li>
+                        <li><p>通常指定为&#39;UTF-8&#39;</p></li>
+                    </ul>
                     
                     <pre><code data-trim contenteditable>
                     &lt;meta charset=&quot;UTF-8&quot;&gt;
@@ -222,7 +235,7 @@
                     <section data-background="white">
                     <h3>IE兼容模式</h3>
                     
-                    <p>用 &lt;meta&gt; 标签可以指定页面应该用什么版本的IE来渲染；</p>
+                    <p>用 &lt;meta&gt; 标签指定页面应该用什么版本的IE渲染</p>
                     
                     <pre><code data-trim contenteditable>
                     &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=Edge&quot;&gt;
@@ -255,7 +268,10 @@
                     <section data-background="white">
                     <h3>尽量避免JS生成标签</h3>
                     
-                    <p>在JS文件中生成标签让内容变得更难查找，更难编辑，性能更差。应该尽量避免这种情况的出现。</p>
+                    <ul>
+                        <li>JS文件中生成标签让内容变得更难查找、更难编辑、性能更差</li>
+                        <li>应该尽量避免这种情况的出现</li>
+                    </ul>
                     
                     
                     </section>
@@ -263,7 +279,10 @@
                     <section data-background="white">
                     <h3>减少标签数量</h3>
                     
-                    <p>在编写HTML代码时，需要尽量避免多余的父节点；很多时候，需要通过迭代和重构来使HTML变得更少。</p>
+                    <ul>
+                        <li>在编写HTML代码时，需要尽量避免多余的父节点</li>
+                        <li>很多时候，需要通过迭代和重构来使HTML变得更少</li>
+                    </ul>
                     
                     <pre><code data-trim contenteditable>
                     &lt;span class=&quot;avatar&quot;&gt;&lt;img src=&quot;...&quot;&gt;&lt;/span&gt;
@@ -382,12 +401,12 @@
                     
                     <pre><code data-trim contenteditable>
                     .modal-header {
-                        /<em> 50px </em>/
-                        width: 50px;</p>
+                        /* 50px */
+                        width: 50px;
                     
-                    <pre><code>color: red; /* color red */</code></pre>
+                        color: red; /* color red */
                     
-                    <p>}
+                    }
                     </code></pre>
                     
                     
@@ -423,14 +442,12 @@
                     </ul>
                     
                     <pre><code data-trim contenteditable>
-                    /<em> class </em>/
-                    .element-content {
-                    }
-                    /<em> id </em>/</p>
-                    
-                    <h1>my-dialog {</h1>
-                    
-                    <p>}
+                     /* class */
+                     .element-content {
+                     }
+                     /* id */
+                     #my-dialog {
+                     }
                     </code></pre>
                     
                     </section>
@@ -681,9 +698,9 @@
                     <pre><code data-trim contenteditable>
                     var foo = 1,
                         bar = 2,
-                        baz = 3;</p>
+                        baz = 3;
                     
-                    <p>var obj = {
+                    var obj = {
                         foo: 1,
                         bar: 2,
                         baz: 3
@@ -740,19 +757,20 @@
                     
                     <pre><code data-trim contenteditable>
                     //Followed by space √
-                    { <br/>  foo: 1,
+                    {
+                      foo: 1,
                       bar: 2,
                       baz: 3
-                    }</p>
+                    }
                     
-                    <p>//No space
+                    //No space
                     {
                       foo:1,
                       bar:2,
                       baz:3
-                    }</p>
+                    }
                     
-                    <p>//Using space in before/after
+                    //Using space in before/after
                     {
                       foo : 1,
                       bar : 2,
@@ -770,13 +788,13 @@
                     //Condition with one space
                     if (true) {
                       //...
-                    }</p>
+                    }
                     
-                    <p>while (true) {
+                    while (true) {
                       //...
-                    }</p>
+                    }
                     
-                    <p>switch (v) {
+                    switch (v) {
                       //...
                     }
                     </code></pre>
@@ -816,15 +834,15 @@
                     <section data-background="white">
                     <h3>感谢Github</h3>
                     
-                    <p>  <img alt="Github" title="linktocat" src="https://octodex.github.com/images/linktocat.jpg"/></p>
+                    <p>  <img alt="Github" title="linktocat" src="https://octodex.github.com/images/linktocat.jpg"/>
                     
-                    <p>  <a href="http://sideeffect.kr/popularconvention#javascript">Popular Coding Convention on Github</a></p>
+                      <a href="http://sideeffect.kr/popularconvention#javascript">Popular Coding Convention on Github</a></p>
                     
                     
                     </section>
             
                     <section data-background="white">
-                    <h3>感谢腾讯全端AlloyTeam 团队</h3>
+                    <h3>感谢腾讯AlloyTeam 团队</h3>
                     
                     <p>  ✍ <a href="http://alloyteam.github.io/CodeGuide/">Code Guide by @AlloyTeam</a></p>
                     </section>
