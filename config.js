@@ -43,7 +43,7 @@ module.exports = function(config) {
    * @type {Array}
    */
   //浏览器兼容性Javascript原生对象函数支持
-  config.vendor.js.push('./bower_components/reveal.js/js/reveal.js');
-  config.vendor.js.push('./bower_components/markdown/lib/markdown.js');
+  config.vendor.js.reveal   = './bower_components/reveal.js/js/reveal.js';
+  config.vendor.js.markdown = './bower_components/markdown/lib/markdown.js';
 
 };

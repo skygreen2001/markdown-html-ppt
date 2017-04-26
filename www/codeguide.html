@@ -14,20 +14,7 @@
         <!-- Theme used for syntax highlighting of code -->
         <link rel="stylesheet" href="./lib/css/zenburn.css">
 
-        <!-- Printing and PDF exports -->
-        <!-- If the query includes 'print-pdf', use the PDF print sheet -->
-        <script>
-            document.write( '<link rel="stylesheet" href="./css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
-        </script>
-
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-        <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
-
-        <style>
+        <style type="text/css">
         .reveal h2 {
             font-size: 2em;
         }
@@ -50,6 +37,19 @@
           width:280px;
         }
         </style>
+
+        <!-- Printing and PDF exports -->
+        <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+        <script>
+            document.write( '<link rel="stylesheet" href="./css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
 
     </head>
     <body>
@@ -854,7 +854,7 @@
         <!--footer begin-->
         
         <script src="./lib/js/head.min.js"></script>
-        <script src="./js/m.min.js"></script>
+        <script src="./js/r.min.js"></script>
 
         <script>
             // More info https://github.com/hakimel/reveal.js#configuration

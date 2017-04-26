@@ -13,7 +13,7 @@ var config = {
   core   : "./bower_components/reveal.js/",
   vendor : {
       css : [ ],
-      js  : [ ]
+      js  : { }
   }
 
 };
@@ -30,20 +30,21 @@ if (require('fs').existsSync('./config.js')) {
 =            Requiring stuffs            =
 ========================================*/
 
-var gulp           = require('gulp'),
+var gulp = require('gulp'),
+    $    = require('gulp-load-plugins')(),
+    path = require('path'),
+    seq  = require('run-sequence');
 
-    bower          = require('gulp-bower'),
+    // bower          = require('gulp-bower'),
 
-    seq            = require('run-sequence'),
-    concat         = require('gulp-concat'),
-    uglify         = require('gulp-uglify'),
-    sourcemaps     = require('gulp-sourcemaps'),
-    cssmin         = require('gulp-cssmin'),
-    ignore         = require('gulp-ignore'),
-    rename         = require('gulp-rename'),
-    path           = require('path'),
-    replace        = require('gulp-replace'),
-    fileinclude    = require('gulp-file-include');
+    // concat         = require('gulp-concat'),
+    // uglify         = require('gulp-uglify'),
+    // sourcemaps     = require('gulp-sourcemaps'),
+    // cssmin         = require('gulp-cssmin'),
+    // ignore         = require('gulp-ignore'),
+    // rename         = require('gulp-rename'),
+    // replace        = require('gulp-replace'),
+    // fileinclude    = require('gulp-file-include');
 
 /*======================================================================
 =            Copy all core reveal directory                            =
@@ -54,7 +55,8 @@ gulp.task('core', function () {
     config.core + 'css/print/*.css',
     config.core + 'css/theme/*.css',
     config.core + 'lib/**/*',
-    config.core + 'plugin/**/*'
+    config.core + 'plugin/**/*',
+    config.core + 'demo.html',
   ], { base: config.core })
   .pipe(gulp.dest(path.join( config.dest )));
 });
@@ -66,8 +68,8 @@ gulp.task('core', function () {
 
 gulp.task('css', function () {
   gulp.src(config.vendor.css)
-  .pipe(cssmin({keepSpecialComments : 0}))
-  .pipe(rename({
+  .pipe($.cssmin({keepSpecialComments : 0}))
+  .pipe($.rename({
     basename: "reveal",
     suffix: '.min'
   }))
@@ -80,34 +82,36 @@ gulp.task('css', function () {
 ====================================================================*/
 
 gulp.task('js', function() {
-  gulp.src(config.vendor.js)
-  .pipe(concat('m.js'))
+  gulp.src(config.vendor.js.reveal)
   .pipe(gulp.dest(path.join(config.dest, 'js')));
 
-  gulp.src(config.vendor.js)
-  .pipe(concat('m.js'))
-  .pipe(uglify())
-  .pipe(rename({suffix: '.min'}))
+  gulp.src(config.vendor.js.reveal)
+  .pipe($.concat('r.js'))
+  .pipe($.uglify())
+  .pipe($.rename({suffix: '.min'}))
   .pipe(gulp.dest(path.join(config.dest, 'js')));
 
-});
+  gulp.src(config.vendor.js.markdown)
+  .pipe(gulp.dest(path.join(config.dest, 'js')));
 
-/*======================================
-=            Build Sequence            =
-======================================*/
+  gulp.src(config.vendor.js.markdown)
+  .pipe($.concat('m.js'))
+  .pipe($.uglify())
+  .pipe($.rename({suffix: '.min'}))
+  .pipe(gulp.dest(path.join(config.dest, 'js')));
 
-gulp.task('build', function(done) {
-  var tasks = ['css', 'js'];
-  seq('core', tasks, done);
 });
 
 /*======================================
 =            Install Sequence          =
 ======================================*/
 
-gulp.task('install', function() {
+gulp.task('install', function(done) {
   // Setup Bower Library
-  bower({});
+  $.bower({});
+
+  var tasks = ['css', 'js'];
+  seq('core', tasks, done);
 });
 
 
@@ -119,8 +123,6 @@ gulp.task('default', function(done){
   var tasks = [];
 
   tasks.push('install');
-
-  tasks.push('build');
 
   seq(tasks, done);
 });
@@ -176,12 +178,12 @@ gulp.task('markdown', function() {
   html = html.replace(new RegExp("</strong></p>","gm"),"</h2>");
 
   gulp.src(config.src + '/model/common.html')
-  .pipe(fileinclude({
+  .pipe($.fileInclude({
       prefix: '@@',
       basepath: '@file'
     }))
-  .pipe(replace('<!-- inject:reveal.js:content -->', html))
-  .pipe(rename({
+  .pipe($.replace('<!-- inject:reveal.js:content -->', html))
+  .pipe($.rename({
     basename: "codeguide"
   }))
   .pipe(gulp.dest(path.join(config.dest)));
