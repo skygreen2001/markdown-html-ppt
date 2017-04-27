@@ -20,7 +20,9 @@
   ],
   "dependencies": {
     "reveal.js": "^3.4.1",
-    "markdown": "^0.5.0"
+    "markdown": "^0.5.0",
+    "jquery": "^3.2.1",
+    "normalize-css": "^6.0.0"
   },
   "_dependencies_ignored": {}
 }

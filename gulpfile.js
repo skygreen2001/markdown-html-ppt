@@ -12,7 +12,7 @@ var config = {
   dest   : 'www',
   core   : "./bower_components/reveal.js/",
   vendor : {
-      css : [ ],
+      css : { },
       js  : { }
   }
 
@@ -67,13 +67,15 @@ gulp.task('core', function () {
 ======================================================================*/
 
 gulp.task('css', function () {
-  gulp.src(config.vendor.css)
+  gulp.src(config.vendor.css.reveal)
   .pipe($.cssmin({keepSpecialComments : 0}))
   .pipe($.rename({
     basename: "reveal",
     suffix: '.min'
   }))
   .pipe(gulp.dest(path.join(config.dest, 'css')));
+
+
 });
 
 

@@ -30,11 +30,11 @@ module.exports = function(config) {
   /**
    * Vendor Css (appended on compile time)
    *
-   * @property config.vendor.css.append
+   * @property config.vendor.css
    * @type {Array}
    */
 
-  config.vendor.css.push('./bower_components/reveal.js/css/reveal.css');
+  config.vendor.css.reveal = './bower_components/reveal.js/css/reveal.css';
 
   /**
    * Vendor Javascripts
