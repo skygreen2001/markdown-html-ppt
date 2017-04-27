@@ -132,8 +132,30 @@ gulp.task('default', function(done){
 =       Markdown to reveal.js ppt      =
 ======================================*/
 gulp.task('markdown', function() {
+  var baseName = "";
+  var srcFile  = "";
+
+  var mdDirs = [];
+
+  var srcDir  = __dirname + '/md';
+  walk(srcDir, function(err, results) {
+    if (err) throw err;
+    // console.log(results);
+    for(var i in results){
+      srcFile  = results[i];
+      // console.log(srcFile);
+      baseName = path.basename(srcFile, '.md').toLowerCase();
+      // console.log(baseName);
+      markdown2ppt(srcFile, baseName);
+    }
+  });
+
+});
+
+/** 单个文件: 转换markdown文档为ppt html */
+function markdown2ppt(srcFile, baseName) {
   const fs = require('fs');
-  var content = fs.readFileSync(__dirname + '/md/CODEGUIDE.md', 'utf8');
+  var content = fs.readFileSync(srcFile, 'utf8');
   var md = require( "markdown" ).markdown;
   var html = md.toHTML(content);
 
@@ -184,7 +206,33 @@ gulp.task('markdown', function() {
     }))
   .pipe($.replace('<!-- inject:reveal.js:content -->', html))
   .pipe($.rename({
-    basename: "codeguide"
+    basename: baseName
   }))
   .pipe(gulp.dest(path.join(config.dest)));
-});
+}
+
+/** 遍历指定路径下所有文件，返回路径数组 */
+function walk(dir, done) {
+  const fs = require('fs');
+  var results = [];
+  fs.readdir(dir, function(err, list) {
+    if (err) return done(err);
+    var i = 0;
+    (function next() {
+      var file = list[i++];
+      if (!file) return done(null, results);
+      file = dir + '/' + file;
+      fs.stat(file, function(err, stat) {
+        if (stat && stat.isDirectory()) {
+          walk(file, function(err, res) {
+            results = results.concat(res);
+            next();
+          });
+        } else {
+          results.push(file);
+          next();
+        }
+      });
+    })();
+  });
+};
