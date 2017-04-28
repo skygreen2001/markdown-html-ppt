@@ -8,9 +8,17 @@
 // Please use config.js to override these selectively:
 
 var config = {
-  src   : 'src',
-  dest   : 'www',
-  core   : "./bower_components/reveal.js/",
+  src  : 'src',
+  dest : 'www',
+  core : "./bower_components/reveal.js/",
+  less : {
+    src: [
+      './src/less/bootstrap.less'
+    ],
+    paths: [
+      './src/less', './bower_components'
+    ]
+  },
   vendor : {
       css : { },
       js  : { }
@@ -75,7 +83,22 @@ gulp.task('css', function () {
   }))
   .pipe(gulp.dest(path.join(config.dest, 'css')));
 
-
+  gulp.src(config.less.src).pipe($.less({
+    paths: config.less.paths.map(function(p){
+      return path.resolve(__dirname, p);
+    })
+  }))
+  .pipe($.mobilizer('bootstrap.css', {
+    'bootstrap.css': {
+      screens: 'any'
+    }
+  }))
+  .pipe($.cssmin({keepSpecialComments : 0}))
+  .pipe($.rename({
+    basename: "common",
+    suffix: '.min'
+  }))
+  .pipe(gulp.dest(path.join(config.dest, 'css')));
 });
 
 
@@ -201,7 +224,7 @@ function markdown2ppt(srcFile, baseName) {
   html = html.replace(new RegExp("<p><strong>","gm"),"<h2>");
   html = html.replace(new RegExp("</strong></p>","gm"),"</h2>");
 
-  gulp.src(config.src + '/model/common.html')
+  gulp.src(config.src + '/html/model/common.html')
   .pipe($.fileInclude({
       prefix: '@@',
       basepath: '@file'
