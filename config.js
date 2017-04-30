@@ -45,5 +45,13 @@ module.exports = function(config) {
   //浏览器兼容性Javascript原生对象函数支持
   config.vendor.js.reveal   = './bower_components/reveal.js/js/reveal.js';
   config.vendor.js.markdown = './bower_components/markdown/lib/markdown.js';
+  config.vendor.js.bower    = [];
+  config.vendor.js.bower.push('./bower_components/ace-builds/src/ace.js');
+  config.vendor.js.bower.push('./bower_components/ace-builds/src/mode-markdown.js');
+  config.vendor.js.bower.push('./bower_components/ace-builds/src/mode-html.js');
+  config.vendor.js.bower.push('./bower_components/ace-builds/src/theme-*.js');
+  // config.vendor.js.bower.push('./bower_components/ace-builds/src/theme-ambiance.js');
+  config.vendor.js.bower.push('./bower_components/jquery/dist/jquery.min.js');
+  config.vendor.js.bower.push('./bower_components/marked/lib/marked.js');
 
 };

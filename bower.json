@@ -22,8 +22,13 @@
     "reveal.js": "^3.4.1",
     "markdown": "^0.5.0",
     "jquery": "^3.2.1",
-    "normalize-css": "^6.0.0",
-    "bootstrap": "^3.3.7"
+    "bootstrap": "^3.3.7",
+    "ace-builds": "^1.2.6",
+    "marked": "^0.3.6"
   },
-  "_dependencies_ignored": {}
+  "_dependencies_ignored": {
+    "ace": "^1.2.6",
+    "normalize-css": "^6.0.0",
+    "github-markdown-css": "^2.6.0"
+  }
 }

@@ -2,9 +2,67 @@
 #main-content-container{
   padding: 0;
 }
-
-main{
+.container {
+  height: 100vh;
+}
+menu {
+  margin: 0;
+}
+menu#toolbar {
+  height: 50px;
+  background-color: #444;
+  width: 100%;
+  color: #fff;
+  line-height: 50px;
+}
+#main-container {
+  width   : 100%;
+  overflow: auto;
+  position: absolute;
+  bottom : 0;
+  left   : 0;
+  right  : 0;
+  top    : 0px;
+  margin : 0px;
+  padding: 0px;
+}
+#md-editor,
+#md-preview {
+  width: 50%;
+  height: 100%;
+  overflow: auto;
   position: relative;
+  background-color: #fff;
+}
+.pull-left {
+  float: left;
+}
+.pull-right {
+  float  : right;
+  padding: 15px;
+  padding-top: 5px;
+}
+// .ace_gutter, .ace_scroller{
+//   top: 15px;
+// }
+#editor, #preview, #panel-editor, #panel-preview{
+  height: 100%;
+  width: 100%;
+}
+#preview{
+  border-top: 1px solid #ebeff1;
+}
+#panel-editor, #panel-preview{
+  padding-top: 40px;
+  background-color: #444;
+}
+#panel-preview{
+  background-color: @color-bg;
+}
+
+main .banner{
+  position: relative;
+  display: none;
   outline: none;
   padding: 30px 0;
   color: #fff;
@@ -50,12 +108,13 @@ main{
 }
 
 .content-head {
+  display: none;
   padding: 0px 15px;
   text-align: center;
 }
 
 @media (min-width: @screen-sm-min) {
-  main{
+  main .banner{
     padding: 80px 0;
     .lead {
       font-size: 24px;

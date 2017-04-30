@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
     <head>
-
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -9,8 +8,7 @@
         <title>Markdown to Html PPT</title>
 
         <link rel="stylesheet" href="./www/css/common.min.css">
-        <style type="text/css">
-        </style>
+        <style type="text/css"></style>
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -18,36 +16,66 @@
         <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-
     </head>
     <body>
-      <header>
-
-      </header>
+      <header></header>
 
       <!--content begin-->
-      <div id="main-content-container" class="container-fluid">
-        <main tabindex="-1">
-          <div class="container">
-            <span class="bb-icon">B</span>
-            <p class="lead">Betterlife Front UI is the most popular front-end framework for developing responsive, web first projects on the web.</p>
-            <p class="lead"><a href="https://github.com/skygreen2001/betterlife.front/archive/master.zip" target="_blank" class="btn btn-outline-inverse btn-lg">下载 Betterlife Front UI</a></p>
-            <p class="version">版本 v1.0.0</p>
-            <div id="carbonads-container">
+      <main id="main-content-container">
+        <section class="container" id="main-container">
+          <menu class="toolbar" id="menu-left"></menu>
+          <div class="pull-left" id="md-editor">
+            <div id="panel-editor">
+              <!--编辑区-->
+              <div class="editor-content" id="editor" ></div>
             </div>
           </div>
-        </main>
 
-        <div class="container content-head">
+          <menu class="toolbar" id="menu-right"></menu>
+          <div class="pull-right" id="md-preview">
+            <div id="panel-preview">
+              <!--显示区-->
+              <div class="preview-content" id="preview"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="container banner">
+          <span class="bb-icon">B</span>
+          <p class="lead">Betterlife Front UI is the most popular front-end framework for developing responsive, web first projects on the web.</p>
+          <p class="lead"><a href="https://github.com/skygreen2001/betterlife.front/archive/master.zip" target="_blank" class="btn btn-outline-inverse btn-lg">下载 Betterlife Front UI</a></p>
+          <p class="version">版本 v1.0.0</p>
+          <div id="carbonads-container">
+          </div>
+        </section>
+
+        <section class="container content-head">
           <h1 class="page-header">Betterlife Front UI</h1>
           <p class="lead">专用于Web开发的html5自适应界面 <br/> 可用于pc电脑端的Web页面 <br/> 可用于嵌入原生应用的[ios, andriod]的html5页面 <br/> 可嵌入微信 <br/> Pc Web端优先</p>
-        </div>
-      </div>
+        </section>
+
+      </main>
       <!--content end-->
-
-
 
       <footer>
       </footer>
+
+      <script src="./www/js/b.min.js"></script>
+      <script src="./www/js/m.min.js"></script>
+      <script>
+        var acen_edit = ace.edit('editor');
+        acen_edit.setTheme('ace/theme/vibrant_ink');
+        acen_edit.getSession().setMode('ace/mode/markdown');
+        acen_edit.setOption("wrap", "free")
+        acen_edit.renderer.setShowPrintMargin(false);
+        $("#editor").keyup(function() {
+            $("#preview").html(marked(acen_edit.getValue()));
+        });
+        acen_edit.getSession().on('changeScrollTop',function(scroll){
+          setTimeout(function() {
+            $('#md-preview').scrollTop(parseInt(scroll) || 0);
+          }, 100);
+        });
+      </script>
     </body>
 </html>

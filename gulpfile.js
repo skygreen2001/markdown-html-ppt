@@ -125,18 +125,24 @@ gulp.task('js', function() {
   .pipe($.rename({suffix: '.min'}))
   .pipe(gulp.dest(path.join(config.dest, 'js')));
 
+  gulp.src(config.vendor.js.bower)
+  .pipe($.concat('bower.js'))
+  .pipe(gulp.dest(path.join(config.dest, 'js')));
+
+  gulp.src(config.vendor.js.bower)
+  .pipe($.concat('b.js'))
+  .pipe($.uglify())
+  .pipe($.rename({suffix: '.min'}))
+  .pipe(gulp.dest(path.join(config.dest, 'js')));
 });
 
 /*======================================
 =            Install Sequence          =
 ======================================*/
 
-gulp.task('install', function(done) {
+gulp.task('install', function() {
   // Setup Bower Library
   $.bower({});
-
-  var tasks = ['css', 'js'];
-  seq('core', tasks, done);
 });
 
 
@@ -145,9 +151,10 @@ gulp.task('install', function(done) {
 ====================================*/
 
 gulp.task('default', function(done){
-  var tasks = [];
+  var tasks = [ 'install', 'core' ];
 
-  tasks.push('install');
+  tasks.push( 'css' );
+  tasks.push( 'js' );
 
   seq(tasks, done);
 });

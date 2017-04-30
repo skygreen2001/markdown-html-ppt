@@ -13,15 +13,22 @@ convert markdown to html format ppt that can be offline use with any web browser
 
 ## 参考资料
 * hakimel/reveal.js: https://github.com/hakimel/reveal.js
+* chjj/marked      : https://github.com/chjj/marked
 * A Markdown parser: https://github.com/evilstreak/markdown-js
-* ShowdownJS       : https://github.com/showdownjs/showdown
-* Parsedown        : https://github.com/erusev/parsedown
-* Markdown Editor  : https://github.com/lepture/editor
-* webpro/reveal-md : https://github.com/webpro/reveal-md
-* Dillinger        : http://dillinger.io/
 * Pandox           : http://pandoc.org/installing.html
 * Grav             : https://getgrav.org/
 * jhipster         : https://jhipster.github.io/presentation/#/
+* webpro/reveal-md : https://github.com/webpro/reveal-md
+* ShowdownJS       : https://github.com/showdownjs/showdown
+* Parsedown        : https://github.com/erusev/parsedown
+
+* Cmd Markdown     : https://www.zybuluo.com/mdeditor
+* 马克飞象          : https://maxiang.io/
+* Ace              : https://ace.c9.io
+* Markdown Editor  : https://github.com/lepture/editor
+* [纯前端打造一个简易实时预览的markdown编辑器](http://www.jianshu.com/p/d0eed194db65)
+* GitHub Markdown style: https://github.com/sindresorhus/github-markdown-css
+* Dillinger        : http://dillinger.io/
 
 * Markdown：指南       : https://www.binarization.com/archive/2016/markdown-guide/#examples
 * Markdown 新手指南    : http://www.jianshu.com/p/q81RER
