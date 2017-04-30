@@ -66,16 +66,31 @@
         var acen_edit = ace.edit('editor');
         acen_edit.setTheme('ace/theme/vibrant_ink');
         acen_edit.getSession().setMode('ace/mode/markdown');
-        acen_edit.setOption("wrap", "free")
-        acen_edit.renderer.setShowPrintMargin(false);
+        acen_edit.getSession().setTabSize(2);
+        acen_edit.getSession().setUseSoftTabs(true);
+        acen_edit.setFontSize(15);
+        acen_edit.setOption("wrap", "free");
+        acen_edit.setOption("showInvisibles", true);
+        acen_edit.setShowPrintMargin(false);
+
+        // acen_edit.setReadOnly(true);
+        // acen_edit.renderer.setShowGutter(false);
+        // //启用提示菜单
+        // ace.require("ace/ext/language_tools");
+        // acen_edit.setOptions({
+        //   enableBasicAutocompletion: true,
+        //   enableSnippets: true,
+        //   enableLiveAutocompletion: true
+        // });
         $("#editor").keyup(function() {
-            $("#preview").html(marked(acen_edit.getValue()));
+          $("#preview").html(marked(acen_edit.getValue()));
         });
         acen_edit.getSession().on('changeScrollTop',function(scroll){
           setTimeout(function() {
             $('#md-preview').scrollTop(parseInt(scroll) || 0);
           }, 100);
         });
+
       </script>
     </body>
 </html>

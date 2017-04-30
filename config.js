@@ -47,10 +47,10 @@ module.exports = function(config) {
   config.vendor.js.markdown = './bower_components/markdown/lib/markdown.js';
   config.vendor.js.bower    = [];
   config.vendor.js.bower.push('./bower_components/ace-builds/src/ace.js');
+
   config.vendor.js.bower.push('./bower_components/ace-builds/src/mode-markdown.js');
-  config.vendor.js.bower.push('./bower_components/ace-builds/src/mode-html.js');
+  // config.vendor.js.bower.push('./bower_components/ace-builds/src/mode-html.js');
   config.vendor.js.bower.push('./bower_components/ace-builds/src/theme-*.js');
-  // config.vendor.js.bower.push('./bower_components/ace-builds/src/theme-ambiance.js');
   config.vendor.js.bower.push('./bower_components/jquery/dist/jquery.min.js');
   config.vendor.js.bower.push('./bower_components/marked/lib/marked.js');
 
