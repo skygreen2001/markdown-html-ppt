@@ -11,6 +11,7 @@ function markdown2revealjs( markdown_html_content, encodeType ) {
     html = html.replace(new RegExp("\n","gm"),"\n                    ");
     html = '<section data-background="white">\n                    <section>\n                    ' + html;
 
+    html = html.replace(/<h1 id=".*">(.*)<\/h1>/gi, '<h1>$1</h1>');
     html = html.replace(/<h2 id=".*">(.*)<\/h2>/gi, '</section>\n                </section>\n            <h2>$1</h2>');
     html = html.replace(/<h2>(.*)<\/h2>/gi, '\n                <section role="$1">\n                    <section data-background="#4d7e65" data-background-transition="slide">\n                    <h2>$1</h2>');
     html = html.replace(/<h3 id=".*">(.*)<\/h3>/gi, '\n                    </section>\n            <h3>$1</h3>');
