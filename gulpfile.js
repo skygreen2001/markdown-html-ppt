@@ -97,31 +97,22 @@ gulp.task('css', function () {
 
 gulp.task('js', function() {
   gulp.src(config.vendor.js.reveal)
-  .pipe(gulp.dest(path.join(config.dest, 'js')));
-
-  gulp.src(config.vendor.js.reveal)
-  .pipe($.concat('r.js'))
+  .pipe(gulp.dest(path.join(config.dest, 'js')))
   .pipe($.uglify())
-  .pipe($.rename({suffix: '.min'}))
+  .pipe($.rename({basename: 'r', suffix: '.min'}))
   .pipe(gulp.dest(path.join(config.dest, 'js')));
 
   gulp.src(config.vendor.js.markdown)
-  .pipe(gulp.dest(path.join(config.dest, 'js')));
-
-  gulp.src(config.vendor.js.markdown)
-  .pipe($.concat('m.js'))
+  .pipe(gulp.dest(path.join(config.dest, 'js')))
   .pipe($.uglify())
-  .pipe($.rename({suffix: '.min'}))
+  .pipe($.rename({basename: 'm', suffix: '.min'}))
   .pipe(gulp.dest(path.join(config.dest, 'js')));
 
   gulp.src(config.vendor.js.bower)
   .pipe($.concat('bower.js'))
-  .pipe(gulp.dest(path.join(config.dest, 'js')));
-
-  gulp.src(config.vendor.js.bower)
-  .pipe($.concat('b.js'))
+  .pipe(gulp.dest(path.join(config.dest, 'js')))
   .pipe($.uglify())
-  .pipe($.rename({suffix: '.min'}))
+  .pipe($.rename({basename: 'b', suffix: '.min'}))
   .pipe(gulp.dest(path.join(config.dest, 'js')));
 });
 

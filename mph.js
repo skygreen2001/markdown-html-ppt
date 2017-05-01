@@ -1,4 +1,3 @@
-
 /**
  * 将markdown html format转换成revealjs html format
  * encodeType: markdown to html方式
@@ -67,4 +66,11 @@ function markdown2revealjs( markdown_html_content, encodeType ) {
     html = html.replace(new RegExp("</strong></p>","gm"),"</h2>");
   }
   return html;
+}
+
+if( typeof exports !== 'undefined' ) {
+  exports.mph = function( markdown_html_content, encodeType ) {
+    var result = markdown2revealjs( markdown_html_content, encodeType );
+    return result;
+  }
 }
