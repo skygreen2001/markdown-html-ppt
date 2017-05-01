@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <title><!-- title --></title>
+
+        <link rel="stylesheet" href="www/css/reveal.min.css">
+        <link rel="stylesheet" href="www/css/theme/black.css">
+
+        <!-- Theme used for syntax highlighting of code -->
+        <link rel="stylesheet" href="www/lib/css/zenburn.css">
+
+        <style type="text/css">
+        .reveal h2 {
+            font-size: 2em;
+        }
+        .reveal h3 {
+            font-size: 1.8em;
+        }
+        .reveal pre {
+            box-shadow:none;
+        }
+        .reveal li {
+            font-size: 0.8em;
+        }
+        .reveal pre code {
+          padding: 15px;
+        }
+        .reveal section img {
+          display: block;
+          box-shadow:0 0 0;
+          margin:20px auto;
+          width:280px;
+        }
+        </style>
+
+        <!-- Printing and PDF exports -->
+        <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+        <script>
+            document.write( '<link rel="stylesheet" href="www/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    </head>
+    <body>
+
+        <div class="reveal">
+            <div class="slides">
+                <!-- slides contents -->
+
+            </div>
+        </div>
+
+        <!--footer begin-->
+
+        <script src="www/lib/js/head.min.js"></script>
+        <script src="www/js/r.min.js"></script>
+        <script src="www/js/b.min.js"></script>
+        <script src="www/js/m.min.js"></script>
+        <script src="mph.js"></script>
+
+        <script type="text/javascript">
+
+
+            $.get("md/CODEGUIDE.md", function(result){
+              // console.log(result);
+              var html = marked(result);
+              // console.log(html);
+              html = markdown2revealjs( html );
+              $("title").html("test");
+              $(".slides").html(html);
+
+              // More info https://github.com/hakimel/reveal.js#configuration
+              Reveal.initialize({
+                  history: true,
+
+                  // More info https://github.com/hakimel/reveal.js#dependencies
+                  dependencies: [
+                      { src: 'www/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                      { src: 'www/plugin/notes/notes.js', async: true },
+                      { src: 'www/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+                  ]
+              });
+            });
+
+        </script>
+
+        <!--footer end-->
+    </body>
+</html>
