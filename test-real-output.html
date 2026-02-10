@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>真实测试</title>
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/reveal.js/4.5.0/theme/black.min.css">
+    <style>
+        
+        .reveal {
+            background-color: #FFFFFF;
+            color: #333333;
+            font-family: Arial, Helvetica, Microsoft YaHei, sans-serif, sans-serif;
+        }
+        .reveal h1, .reveal h2, .reveal h3 {
+            color: #2196F3;
+            font-family: Arial, Helvetica, Microsoft YaHei, sans-serif, serif;
+            text-transform: none;
+        }
+        .reveal a {
+            color: #0D47A1;
+        }
+        .reveal .center {
+            text-align: center;
+        }
+        
+        .reveal ul { font-size: 0.8em; }
+        .reveal li { margin: 0.5em 0; }
+        .reveal section { text-align: left; }
+        .reveal .center { text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            
+            <section class="center">
+                <h1>真实测试</h1>
+            </section>
+            <section>
+                <h2>格式测试</h2>
+                <p style="line-height: 1.5; margin: 10px 0;">这是一个包含<strong>加粗文本</strong>、<em>斜体文本</em>和<code style="background: #f0f0f0; padding: 2px 6px; border-radius: 3px; font-family: monospace;">代码文本</code>的段落。</p>
+            </section>
+            <section>
+                <h2>引用测试</h2>
+                <blockquote style="font-style: italic; border-left: 3px solid #ccc; padding-left: 15px; margin: 10px 0; line-height: 1.5;">这是一段引用。 包含<strong>加粗</strong>内容。</blockquote>
+            </section>
+            <section>
+                <h2>代码块测试</h2>
+                <pre style="background: #f5f5f5; padding: 10px; border-radius: 5px; margin: 10px 0;"><code>def hello():
+    print(&quot;Hello, World!&quot;)</code></pre>
+            </section>
+            <section>
+                <h2>列表测试</h2>
+                <ul style="line-height: 1.5; padding-left: 20px; list-style-position: inside;">
+                    <li>第一项：包含<strong>加粗</strong></li>
+                    <li>第二项：包含<em>斜体</em></li>
+                    <li>第三项：包含<code style="background: #f0f0f0; padding: 2px 6px; border-radius: 3px; font-family: monospace;">代码</code></li>
+                </ul>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            slideNumber: true,
+            transition: 'slide',
+            backgroundTransition: 'fade',
+            center: false,
+            width: 1280,
+            height: 720,
+            margin: 0.1,
+            minScale: 0.2,
+            maxScale: 2.0
+        });
+    </script>
+</body>
+</html>
