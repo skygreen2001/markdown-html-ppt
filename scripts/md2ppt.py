@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
 Markdown Html PowerPoint Converter
 将 Markdown 文档转换为 PowerPoint 演示文稿

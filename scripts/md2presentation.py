@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
 Markdown Html Presentation Converter v2.4.0
 将 Markdown 文档转换为演示文稿（HTML reveal.js 或 PowerPoint）
@@ -163,12 +164,21 @@ class EnhancedMarkdownParser:
                     })
                     continue
             
-            # 代码块
-            elif line.strip().startswith('```'):
+            # 代码块 - 支持缩进的代码块
+            elif re.match(r'^(\s*)```\s*', line):
                 if current_slide:
+                    # 获取代码块的缩进级别
+                    indent_match = re.match(r'^(\s*)```\s*', line)
+                    indent = indent_match.group(1) if indent_match else ''
+                    
                     i += 1
                     code_lines = []
-                    while i < len(lines) and not lines[i].strip().startswith('```'):
+                    # 查找结束标记，支持相同缩进级别
+                    while i < len(lines):
+                        # 检查是否是结束标记（相同缩进级别的 ```）
+                        if re.match(r'^' + re.escape(indent) + r'```\s*$', lines[i]):
+                            break
+                        # 保留原始行（包括缩进）
                         code_lines.append(lines[i])
                         i += 1
                     
@@ -343,6 +353,22 @@ class RevealJSGenerator:
     """reveal.js HTML 生成器 - 修复版"""
     
     @staticmethod
+    def _has_code_block(slide: dict) -> bool:
+        """
+        检测幻灯片是否包含代码块
+        
+        Args:
+            slide: 幻灯片数据
+            
+        Returns:
+            是否包含代码块
+        """
+        for item in slide.get('content', []):
+            if item.get('type') == 'code':
+                return True
+        return False
+    
+    @staticmethod
     def _escape_html(text: str) -> str:
         """转义 HTML 特殊字符"""
         return (text
@@ -402,13 +428,17 @@ class RevealJSGenerator:
                 section += '''
             </section>'''
             else:
-                # 内容幻灯片
-                section = f'''
-            <section>
-                <h2>{RevealJSGenerator._escape_html(slide['title'])}</h2>'''
+                # 检测是否包含代码块
+                has_code = RevealJSGenerator._has_code_block(slide)
                 
-                if slide['content']:
-                    # 🔧 修复：添加状态跟踪，确保 ul 标签正确闭合
+                if has_code:
+                    # 使用 data-markdown 格式处理包含代码块的幻灯片
+                    section = f'''
+            <section data-markdown>
+                <textarea data-template>
+## {slide['title']}
+'''
+                    # 生成 markdown 格式的内容
                     in_list = False
                     
                     for item in slide['content']:
@@ -416,49 +446,92 @@ class RevealJSGenerator:
                         
                         # 检查是否需要关闭列表
                         if in_list and item_type != 'list':
-                            section += '''
-                </ul>'''
+                            section += '\n'
                             in_list = False
                         
                         if item_type == 'quote':
                             # 块引用
-                            section += '''
-                <blockquote style="font-style: italic; border-left: 3px solid #ccc; padding-left: 15px; margin: 10px 0; line-height: 1.5;">'''
-                            section += RevealJSGenerator._format_inline(item.get('segments', []))
-                            section += '''</blockquote>'''
+                            quote_text = ''.join(seg.get('text', '') for seg in item.get('segments', []))
+                            section += f'\n> {quote_text}\n'
                         
                         elif item_type == 'code':
-                            # 代码块
-                            section += '''
-                <pre style="background: #f5f5f5; padding: 10px; border-radius: 5px; margin: 10px 0;"><code>'''
-                            section += RevealJSGenerator._escape_html(item.get('text', ''))
-                            section += '''</code></pre>'''
+                            # 代码块 - 直接输出原始代码，保留换行
+                            code_text = item.get("text", "")
+                            # 确保代码块内容正确换行
+                            section += f'\n```\n{code_text}\n```\n'
                         
                         elif item_type == 'paragraph':
                             # 段落
-                            section += '''
-                <p style="line-height: 1.5; margin: 10px 0;">'''
-                            section += RevealJSGenerator._format_inline(item.get('segments', []))
-                            section += '''</p>'''
+                            para_text = ''.join(seg.get('text', '') for seg in item.get('segments', []))
+                            section += f'\n{para_text}\n'
                         
                         else:  # list
                             # 列表项
-                            if not in_list:
-                                section += '''
-                <ul style="line-height: 1.5; padding-left: 20px; list-style-position: inside;">'''
-                                in_list = True
-                            
-                            section += '''
-                    <li>'''
-                            section += RevealJSGenerator._format_inline(item.get('segments', []))
-                            section += '''</li>'''
+                            list_text = ''.join(seg.get('text', '') for seg in item.get('segments', []))
+                            section += f'\n- {list_text}'
+                            in_list = True
                     
-                    # 🔧 修复：关闭最后可能打开的 ul
-                    if in_list:
-                        section += '''
+                    section += '''
+                </textarea>
+            </section>'''
+                else:
+                    # 普通幻灯片 - 使用 HTML 格式
+                    section = f'''
+            <section>
+                <h2>{RevealJSGenerator._escape_html(slide['title'])}</h2>'''
+                    
+                    if slide['content']:
+                        # 状态跟踪，确保 ul 标签正确闭合
+                        in_list = False
+                        
+                        for item in slide['content']:
+                            item_type = item.get('type', 'list')
+                            
+                            # 检查是否需要关闭列表
+                            if in_list and item_type != 'list':
+                                section += '''
                 </ul>'''
-                
-                section += '''
+                                in_list = False
+                            
+                            if item_type == 'quote':
+                                # 块引用
+                                section += '''
+                <blockquote style="font-style: italic; border-left: 3px solid #ccc; padding-left: 15px; margin: 10px 0; line-height: 1.5;">'''
+                                section += RevealJSGenerator._format_inline(item.get('segments', []))
+                                section += '''</blockquote>'''
+                            
+                            elif item_type == 'code':
+                                # 代码块
+                                section += '''
+                <pre style="background: #f5f5f5; padding: 10px; border-radius: 5px; margin: 10px 0;"><code>'''
+                                section += RevealJSGenerator._escape_html(item.get('text', ''))
+                                section += '''</code></pre>'''
+                            
+                            elif item_type == 'paragraph':
+                                # 段落
+                                section += '''
+                <p style="line-height: 1.5; margin: 10px 0;">'''
+                                section += RevealJSGenerator._format_inline(item.get('segments', []))
+                                section += '''</p>'''
+                            
+                            else:  # list
+                                # 列表项
+                                if not in_list:
+                                    section += '''
+                <ul style="line-height: 1.5; padding-left: 20px; list-style-position: inside;">'''
+                                    in_list = True
+                                
+                                section += '''
+                    <li>'''
+                                section += RevealJSGenerator._format_inline(item.get('segments', []))
+                                section += '''</li>'''
+                        
+                        # 关闭最后可能打开的 ul
+                        if in_list:
+                            section += '''
+                </ul>'''
+                    
+                    section += '''
             </section>'''
             
             sections.append(section)
@@ -491,6 +564,7 @@ class RevealJSGenerator:
     </div>
 
     <script src="https://cdn.bootcdn.net/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/reveal.js/4.5.0/plugin/markdown/markdown.min.js"></script>
     <script>
         Reveal.initialize({{
             hash: true,
@@ -502,7 +576,8 @@ class RevealJSGenerator:
             height: 720,
             margin: 0.1,
             minScale: 0.2,
-            maxScale: 2.0
+            maxScale: 2.0,
+            plugins: [RevealMarkdown]
         }});
     </script>
 </body>
