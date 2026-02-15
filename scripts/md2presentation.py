@@ -149,18 +149,29 @@ class EnhancedMarkdownParser:
                 i += 1
                 continue
             
-            # 块引用
-            elif line.startswith('> '):
+            # 块引用 - 支持缩进的引用块
+            elif re.match(r'^\s*>', line):
                 if current_slide:
                     quote_lines = []
-                    while i < len(lines) and lines[i].startswith('> '):
-                        quote_lines.append(lines[i][2:].strip())
+                    # 获取当前引用块的缩进级别
+                    indent_match = re.match(r'^(\s*)>', line)
+                    indent = indent_match.group(1) if indent_match else ''
+                    
+                    # 收集所有连续的引用块行，支持相同缩进级别
+                    while i < len(lines):
+                        line_match = re.match(r'^' + re.escape(indent) + r'>\s*(.*)$', lines[i])
+                        if not line_match:
+                            break
+                        # 保留原始内容，包括换行
+                        quote_lines.append(line_match.group(1).strip())
                         i += 1
                     
-                    quote_text = ' '.join(quote_lines)
+                    # 保留换行信息
+                    quote_text = '\n'.join(quote_lines)
                     current_slide['content'].append({
                         'type': 'quote',
-                        'segments': EnhancedMarkdownParser.parse_inline_formatting(quote_text)
+                        'segments': EnhancedMarkdownParser.parse_inline_formatting(quote_text),
+                        'original_lines': quote_lines  # 保存原始行信息，用于data-markdown格式
                     })
                     continue
             
@@ -450,9 +461,17 @@ class RevealJSGenerator:
                             in_list = False
                         
                         if item_type == 'quote':
-                            # 块引用
-                            quote_text = ''.join(seg.get('text', '') for seg in item.get('segments', []))
-                            section += f'\n> {quote_text}\n'
+                            # 块引用 - 保留原始换行
+                            original_lines = item.get('original_lines', [])
+                            if original_lines:
+                                # 逐行输出引用块
+                                for quote_line in original_lines:
+                                    section += f'\n> {quote_line}'
+                                section += '\n'
+                            else:
+                                # 后备方案：使用segments
+                                quote_text = ''.join(seg.get('text', '') for seg in item.get('segments', []))
+                                section += f'\n> {quote_text}\n'
                         
                         elif item_type == 'code':
                             # 代码块 - 直接输出原始代码，保留换行
@@ -494,16 +513,27 @@ class RevealJSGenerator:
                                 in_list = False
                             
                             if item_type == 'quote':
-                                # 块引用
+                                # 块引用 - 处理换行
                                 section += '''
-                <blockquote style="font-style: italic; border-left: 3px solid #ccc; padding-left: 15px; margin: 10px 0; line-height: 1.5;">'''
-                                section += RevealJSGenerator._format_inline(item.get('segments', []))
+                <blockquote style="font-style: italic; border-left: 3px solid #ccc; margin: 10px 0; margin-left: 70px; padding-left: 20px;line-height: 1.5;">'''
+                                
+                                # 处理引用块的换行
+                                segments = item.get('segments', [])
+                                if segments:
+                                    # 拼接文本并处理换行
+                                    combined_text = ''.join(seg.get('text', '') for seg in segments)
+                                    # 将换行符转换为<br>标签
+                                    formatted_text = combined_text.replace('\n', '<br>')
+                                    section += formatted_text
+                                else:
+                                    section += RevealJSGenerator._format_inline(segments)
+                                
                                 section += '''</blockquote>'''
                             
                             elif item_type == 'code':
                                 # 代码块
                                 section += '''
-                <pre style="background: #f5f5f5; padding: 10px; border-radius: 5px; margin: 10px 0;"><code>'''
+                <pre style="background: #f5f5f5; padding: 10px; border-radius: 5px; margin: 10px 0;margin-left: 70px; "><code>'''
                                 section += RevealJSGenerator._escape_html(item.get('text', ''))
                                 section += '''</code></pre>'''
                             
@@ -518,7 +548,7 @@ class RevealJSGenerator:
                                 # 列表项
                                 if not in_list:
                                     section += '''
-                <ul style="line-height: 1.5; padding-left: 20px; list-style-position: inside;">'''
+                <ul style="line-height: 1.5; list-style-position: inside;">'''
                                     in_list = True
                                 
                                 section += '''
@@ -554,6 +584,7 @@ class RevealJSGenerator:
         .reveal li {{ margin: 0.5em 0; }}
         .reveal section {{ text-align: left; }}
         .reveal .center {{ text-align: center; }}
+        .reveal blockquote {{ margin-left: 70px;padding-left: 20px;width: 90%; }}
     </style>
 </head>
 <body>
